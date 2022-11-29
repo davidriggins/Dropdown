@@ -9,3 +9,10 @@ import { ref } from "vue";
 
 const title = ref("Hello");
 </script>
+
+<style scoped>
+a {
+  color: inherit;
+  text-decoration: none;
+}
+</style>
