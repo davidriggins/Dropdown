@@ -10,7 +10,7 @@
       <div class="list-items-div" v-if="isOpen">
         <ul class="list-items">
           <li class="list-item" v-for="(option, index) in filteredOptions" :key="index">
-            <span><input type="checkbox" /> {{ option }} </span>
+            <span><input class="input" type="checkbox" /> {{ option }} </span>
           </li>
         </ul>
       </div>
@@ -21,7 +21,7 @@
 <script setup>
 import { ref } from "vue";
 
-const title = ref("Hello");
+const title = ref("This is a dropdown");
 const isOpen = ref(true);
 const filteredOptions = ref(["Hello1", "HelloHelloHelloHello", "Hello3"]);
 </script>
@@ -48,25 +48,43 @@ a svg {
   margin-left: 10px;
 }
 
+.dropdown-list {
+  display: inline-block;
+  max-width: 600px;
+  margin: 0.2rem;
+}
+
 .list-items-div {
+  max-width: 600px;
 }
 .list-items {
+  list-style-type: none;
   padding: 0;
-  margin: 0;
+  margin-top: 2px;
   border: 1px solid #2b2d42;
+  max-height: 24rem;
+  overflow: hidden;
+  overflow-y: auto;
+  border-radius: 0.3rem;
 }
 .list-item {
-  list-style-type: none;
+  border-top: 1px solid #333;
+  display: block;
+}
+
+.list-item:hover,
+.list-item:focus {
+  cursor: pointer;
 }
 
 .list-item span {
-  margin: 0.5rem;
+  display: block;
 }
 .list-item span:hover {
-  background-color: red;
+  background-color: #eee;
 }
 
-.dropdown-list {
-  display: inline-block;
+.input {
+  margin: 0.3rem;
 }
 </style>
