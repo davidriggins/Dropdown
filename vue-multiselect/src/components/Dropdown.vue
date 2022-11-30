@@ -1,5 +1,5 @@
 <template>
-  <div class="dropdown-list">
+  <div class="dropdown-list" @click="isOpen = !isOpen">
     <a class="btn btn-secondary" href="#"
       >{{ title }}
       <svg viewBox="0 0 1030 638" width="10">
@@ -10,7 +10,7 @@
       <div class="list-items-div" v-if="isOpen">
         <ul class="list-items">
           <li class="list-item" v-for="(option, index) in filteredOptions" :key="index">
-            <span><input class="input" type="checkbox" /> {{ option }} </span>
+            <label><input class="input" type="checkbox" /> {{ option }} </label>
           </li>
         </ul>
       </div>
@@ -77,10 +77,10 @@ a svg {
   cursor: pointer;
 }
 
-.list-item span {
+.list-item label {
   display: block;
 }
-.list-item span:hover {
+.list-item label:hover {
   background-color: #eee;
 }
 
