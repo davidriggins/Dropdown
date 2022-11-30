@@ -3,21 +3,14 @@
     <a class="btn btn-secondary" href="#"
       >{{ title }}
       <svg viewBox="0 0 1030 638" width="10">
-        <path
-          d="M1017 68L541 626q-11 12-26 12t-26-12L13 68Q-3 49 6 24.5T39 0h952q24 0 33 24.5t-7 43.5z"
-          fill="#FFF"
-        ></path></svg
+        <path d="M1017 68L541 626q-11 12-26 12t-26-12L13 68Q-3 49 6 24.5T39 0h952q24 0 33 24.5t-7 43.5z" fill="#FFF"></path></svg
     ></a>
 
     <transition name="fade" appear>
       <div class="list-items-div" v-if="isOpen">
         <ul class="list-items">
-          <li
-            class="list-item"
-            v-for="(option, index) of filteredOptions"
-            :key="index"
-          >
-            <span><input type="checkbox" /> option</span>
+          <li class="list-item" v-for="(option, index) in filteredOptions" :key="index">
+            <span><input type="checkbox" /> {{ option }} </span>
           </li>
         </ul>
       </div>
@@ -30,11 +23,17 @@ import { ref } from "vue";
 
 const title = ref("Hello");
 const isOpen = ref(true);
-const filteredOptions = ref(["Hello1", "Hello2", "Hello3"]);
+const filteredOptions = ref(["Hello1", "HelloHelloHelloHello", "Hello3"]);
 </script>
 
 // Style Section //
 <style scoped>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 a {
   /* background: #8d99ae; */
   /* color: inherit; */
@@ -49,6 +48,8 @@ a svg {
   margin-left: 10px;
 }
 
+.list-items-div {
+}
 .list-items {
   padding: 0;
   margin: 0;
@@ -66,5 +67,6 @@ a svg {
 }
 
 .dropdown-list {
+  display: inline-block;
 }
 </style>
