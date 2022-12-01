@@ -1,33 +1,53 @@
 <template>
-  <div class="dropdown-list" @click="isOpen = !isOpen">
-    <a class="btn btn-secondary" href="#"
-      >{{ title }}
+  <div class="dropdown-list">
+    <input type="button" :value="title" @click="openClose('myselect')" />
+    <!-- <button>
+      {{ title }}
       <svg viewBox="0 0 1030 638" width="10">
-        <path d="M1017 68L541 626q-11 12-26 12t-26-12L13 68Q-3 49 6 24.5T39 0h952q24 0 33 24.5t-7 43.5z" fill="#FFF"></path></svg
-    ></a>
+        <path d="M1017 68L541 626q-11 12-26 12t-26-12L13 68Q-3 49 6 24.5T39 0h952q24 0 33 24.5t-7 43.5z" fill="#FFF"></path>
+      </svg>
+    </button> -->
 
-    <transition name="fade" appear>
-      <div class="list-items-div" v-if="isOpen">
-        <ul class="list-items">
-          <li class="list-item" v-for="(option, index) in filteredOptions" :key="index">
-            <label><input class="input" type="checkbox" /> {{ option }} </label>
-          </li>
-        </ul>
+    <div class="list-items-div invisible" id="myselect">
+      <p class="list-item" v-for="(option, index) in filteredOptions" :key="index">
+        <label><input type="checkbox" />{{ option }} </label>
+      </p>
+    </div>
+
+    <!-- <transition name="fade" appear>
+      <div class="list-items-div invisible" id="myselect">
+        <p class="list-item" v-for="(option, index) in filteredOptions" :key="index">
+          <label><input type="checkbox" />{{ option }} </label>
+        </p>
       </div>
-    </transition>
+    </transition> -->
   </div>
 </template>
 
 <script setup>
+/* 
+  script section =============================================
+*/
 import { ref } from "vue";
 
 const title = ref("This is a dropdown");
 const isOpen = ref(true);
 const filteredOptions = ref(["Hello1", "HelloHelloHelloHello", "Hello3"]);
+
+const openClose = (id) => {
+  let element = document.getElementById(id);
+  if (element.className.indexOf("invisible") >= 0) {
+    element.classList.remove("invisible");
+  } else {
+    element.classList.add("invisible");
+  }
+};
 </script>
 
-// Style Section //
 <style scoped>
+/* 
+  style section =============================================
+*/
 * {
   margin: 0;
   padding: 0;
@@ -86,5 +106,9 @@ a svg {
 
 .input {
   margin: 0.3rem;
+}
+
+.invisible {
+  display: none;
 }
 </style>
