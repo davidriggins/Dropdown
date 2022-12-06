@@ -11,10 +11,10 @@
 
       <div class="list-items-div invisible" id="myselect">
         <p class="select-all list-item">
-          <label class="label-item"><input type="checkbox" class="checkbox-item" />Select All</label>
+          <label class="label-item"><input type="checkbox" class="checkbox-item" name="select-all" @click="toggle($event)" />Select All</label>
         </p>
         <p class="list-item" v-for="(option, index) in filteredOptions" :key="index">
-          <label class="label-item"> <input type="checkbox" class="checkbox-item" />{{ option }} </label>
+          <label class="label-item"> <input type="checkbox" name="checkbox-item" class="checkbox-item" @click="inspectCheckAll($event)" />{{ option }} </label>
         </p>
       </div>
 
@@ -47,6 +47,52 @@ const openClose = (id) => {
     element.classList.remove("invisible");
   } else {
     element.classList.add("invisible");
+  }
+};
+
+const toggle = (e) => {
+  var checkboxes = document.getElementsByName("checkbox-item");
+  var count = 0;
+  for (var i = 0; i < checkboxes.length; i++) {
+    console.log("in for");
+    if (checkboxes[i] != e.target) {
+      checkboxes[i].checked = e.target.checked;
+      if (checkboxes[i].checked) {
+        count++;
+      }
+    }
+  }
+
+  if (count === checkboxes.length) {
+    e.target.checked = true;
+  }
+
+  if (count < checkboxes.length) {
+    e.target.checked = false;
+  }
+};
+
+const inspectCheckAll = (e) => {
+  var checkboxes = document.getElementsByName("checkbox-item");
+  var selectAll = document.getElementsByName("select-all");
+  var count = 0;
+
+  console.log("Got here");
+  for (var i = 0; i < checkboxes.length; i++) {
+    if (checkboxes[i].checked) {
+      count++;
+    }
+  }
+
+  console.log(count);
+  if (count === checkboxes.length) {
+    selectAll.checked = true;
+  }
+
+  if (count < checkboxes.length) {
+    console.log("Got here 2");
+    console.log(selectAll);
+    selectAll.checked = false;
   }
 };
 </script>
