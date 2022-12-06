@@ -1,6 +1,6 @@
 <template>
   <div class="outer-div">
-    <input type="button" class="input-button" :value="title" @click="openClose('myselect')" />
+    <input type="button" class="input-button" :value="title" style="padding: 0.3rem" @click="openClose('myselect')" />
     <div class="dropdown-list">
       <!-- <button>
       {{ title }}
@@ -36,7 +36,7 @@
 import { ref } from "vue";
 
 var title = ref("This is a dropdown");
-title.value = title.value += " &#1F893;";
+title.value = title.value += " ⮟";
 
 const isOpen = ref(true);
 const filteredOptions = ref(["Hello1", "HelloHelloHelloHello", "Hello3"]);
@@ -61,7 +61,7 @@ const openClose = (id) => {
   box-sizing: border-box;
 }
 
-.input {
+.input-button value {
 }
 
 a {
@@ -78,10 +78,6 @@ a svg {
   margin-left: 10px;
 }
 
-.outer-div {
-  /* display: inline-block; */
-}
-
 .input-button {
   display: inline-block;
   margin: 0.2rem;
@@ -92,11 +88,6 @@ a svg {
   margin: 0.2rem;
   border-radius: 0.3rem;
 }
-
-/* .list-items-div {
-  max-width: 600px;
-  border-radius: 0.3rem;
-} */
 
 .select-all {
 }
@@ -113,31 +104,10 @@ a svg {
   border-radius: 0.3rem;
   width: max-content;
 }
-/* .list-item label {
-  display: block;
-} */
-
-.list-item label:hover:first-child {
-  /* border-radius: 10rem 10rem 0 0; */
-}
-
-/* .list-item p {
-  width: max-content;
-} */
 
 .label-item {
-  /* width: max-content; */
+  display: block;
 }
-/* .list-item p:hover,
-.list-item p:focus {
-  cursor: pointer;
-} */
-/* 
-p.list-item:hover,
-p.list-item:focus {
-  cursor: pointer;
-  z-index: 1;
-} */
 
 .list-item:hover,
 .list-item:focus {
@@ -152,24 +122,6 @@ p.list-item:focus {
 .list-item input {
   margin: 0 0.3rem;
 }
-
-/* p.list-item.input:hover,
-p.list-item.input:focus {
-  cursor: pointer;
-} */
-/* 
-.list-item p {
-  display: block;
-  margin-left: 0.2rem;
-} */
-/* .list-item label:hover {
-  background-color: red;
-  display: block;
-} */
-
-/* .input {
-  margin: 0.3rem;
-} */
 
 .invisible {
   display: none;
