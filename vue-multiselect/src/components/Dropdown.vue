@@ -1,6 +1,7 @@
 <template>
   <div class="outer-div">
-    <input type="button" class="input-button" :value="title" style="padding: 0.3rem" @click="openClose('myselect')" />
+    <input type="button" class="input-button" :value="title" style="padding: 0.3rem" @click="show = !show" />
+
     <div class="dropdown-list">
       <!-- <button>
       {{ title }}
@@ -8,23 +9,24 @@
         <path d="M1017 68L541 626q-11 12-26 12t-26-12L13 68Q-3 49 6 24.5T39 0h952q24 0 33 24.5t-7 43.5z" fill="#FFF"></path>
       </svg>
     </button> -->
+      <transition name="fade">
+        <div class="list-items-div" v-if="show" id="myselect">
+          <p class="select-all list-item">
+            <label class="label-item"><input type="checkbox" class="checkbox-item" name="select-all" @click="toggle($event)" />Select All</label>
+          </p>
+          <p class="list-item" v-for="(option, index) in filteredOptions" :key="index">
+            <label class="label-item"> <input type="checkbox" name="checkbox-item" class="checkbox-item" @click="inspectCheckAll($event)" />{{ option }} </label>
+          </p>
+        </div>
 
-      <div class="list-items-div invisible" id="myselect">
-        <p class="select-all list-item">
-          <label class="label-item"><input type="checkbox" class="checkbox-item" name="select-all" @click="toggle($event)" />Select All</label>
-        </p>
-        <p class="list-item" v-for="(option, index) in filteredOptions" :key="index">
-          <label class="label-item"> <input type="checkbox" name="checkbox-item" class="checkbox-item" @click="inspectCheckAll($event)" />{{ option }} </label>
-        </p>
-      </div>
-
-      <!-- <transition name="fade" appear>
+        <!-- <transition name="fade" appear>
       <div class="list-items-div invisible" id="myselect">
         <p class="list-item" v-for="(option, index) in filteredOptions" :key="index">
           <label><input type="checkbox" />{{ option }} </label>
         </p>
       </div>
     </transition> -->
+      </transition>
     </div>
   </div>
 </template>
@@ -38,7 +40,8 @@ import { ref } from "vue";
 var title = ref("This is a dropdown");
 title.value = title.value += " ⮟";
 
-const isOpen = ref(true);
+var show = ref(false);
+
 const filteredOptions = ref(["Hello1", "HelloHelloHelloHello", "Hello3"]);
 
 const openClose = (id) => {
@@ -52,23 +55,14 @@ const openClose = (id) => {
 
 const toggle = (e) => {
   var checkboxes = document.getElementsByName("checkbox-item");
-  var count = 0;
+  // var count = 0;
   for (var i = 0; i < checkboxes.length; i++) {
-    console.log("in for");
     if (checkboxes[i] != e.target) {
       checkboxes[i].checked = e.target.checked;
       if (checkboxes[i].checked) {
-        count++;
+        // count++;
       }
     }
-  }
-
-  if (count === checkboxes.length) {
-    e.target.checked = true;
-  }
-
-  if (count < checkboxes.length) {
-    e.target.checked = false;
   }
 };
 
@@ -77,22 +71,18 @@ const inspectCheckAll = (e) => {
   var selectAll = document.getElementsByName("select-all");
   var count = 0;
 
-  console.log("Got here");
   for (var i = 0; i < checkboxes.length; i++) {
     if (checkboxes[i].checked) {
       count++;
     }
   }
 
-  console.log(count);
   if (count === checkboxes.length) {
-    selectAll.checked = true;
+    selectAll[0].checked = true;
   }
 
   if (count < checkboxes.length) {
-    console.log("Got here 2");
-    console.log(selectAll);
-    selectAll.checked = false;
+    selectAll[0].checked = false;
   }
 };
 </script>
@@ -107,7 +97,8 @@ const inspectCheckAll = (e) => {
   box-sizing: border-box;
 }
 
-.input-button value {
+.input-button {
+  z-index: 1;
 }
 
 a {
@@ -171,5 +162,63 @@ a svg {
 
 .invisible {
   display: none;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* .slide-fade-enter-active {
+  transition: all 1s;
+} */
+
+/* .slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+} */
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 0.75s ease-out;
+}
+
+.slide-enter-to {
+  position: absolute;
+  bottom: 100%;
+}
+
+.slide-enter-from {
+  position: absolute;
+  bottom: -100%;
+}
+/* .slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateY(20px);
+  opacity: 0;
+} */
+
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: all 0.75s ease-in-out;
+}
+
+.slide-fade-enter-to {
+  position: absolute;
+  bottom: 100%;
+}
+
+.slide-fade-enter-from {
+  position: absolute;
+  bottom: -100%;
+  opacity: 0;
 }
 </style>
