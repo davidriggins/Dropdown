@@ -1,23 +1,20 @@
 <template>
   <div>
     <DropdownVue></DropdownVue>
-    <!-- <h1>Home</h1>
-    <ul>
-      <li
-        class="list-item"
-        v-for="(option, index) of filteredOptions"
-        :key="index"
-      >
-        <span><input type="checkbox" /> option</span>
-      </li>
-    </ul> -->
+    <button @click="openModal">Show Modal</button>
+    <DropdownModal v-if="showModal"> </DropdownModal>
   </div>
 </template>
 
 <script setup>
-//import { ref } from "vue";
-import DropdownVue from "../components/Dropdown.vue";
+import { ref } from "vue";
+import DropdownVue from "../components/modals/DropdownModal.vue";
 
+const showModal = ref(false);
+
+const openModal = () => {
+  showModal.value = true;
+};
 //const filteredOptions = ref(["Hello1", "Hello2", "Hello3"]);
 </script>
 

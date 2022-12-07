@@ -22,6 +22,7 @@
   script section =============================================
 */
 import { ref } from "vue";
+import BaseModal from "@/components/modals/BaseModal";
 
 var title = ref("This is a dropdown");
 title.value = title.value += " ⮟";
