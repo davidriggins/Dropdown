@@ -4,7 +4,7 @@
 
     <div class="dropdown-list">
       <transition name="fade">
-        <div class="list-items-div" v-if="show" @focus="handleFocus" @focusout="handleFocusOut" tabindex="0" id="myselect">
+        <div class="list-items-div" v-if="show" id="myselect">
           <p class="select-all list-item">
             <label class="label-item"><input type="checkbox" class="checkbox-item" name="select-all" @click="toggle($event)" />Select All</label>
           </p>
@@ -58,15 +58,6 @@ const inspectCheckAll = (e) => {
   if (count < checkboxes.length) {
     selectAll[0].checked = false;
   }
-};
-
-const handleFocus = () => {
-  show.value = true;
-};
-
-const handleFocusOut = () => {
-  console.log("focus out");
-  show.value = false;
 };
 </script>
 
