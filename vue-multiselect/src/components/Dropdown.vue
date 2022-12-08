@@ -1,16 +1,15 @@
 <template>
   <div class="outer-div" ref="dropdownRef">
-    <input type="button" class="input-button" :value="title" style="padding: 0.3rem" @click="toggleDropdown" />
+    <input type="button" class="input-button list-item" :value="title" style="padding: 0.3rem" @click="toggleDropdown" />
 
     <transition name="fade">
       <div class="dropdown-content" v-if="show">
-        <p class="select-all list-item">
-          <label class="label-item checkbox-item"> <input type="checkbox" class="checkbox-item select-all" name="select-all" @click="toggle($event)" />{{ selectAllText }} </label>
-        </p>
+        <label class="checkbox-item select-all list-item"> <input type="checkbox" class="checkbox-item select-all" name="select-all" @click="toggle($event)" />{{ selectAllText }} </label>
+
         <div class="dropdown-list">
-          <p class="list-item" v-for="(option, index) in filteredOptions" :key="index">
-            <label class="label-item"> <input type="checkbox" name="checkbox-item" class="checkbox-item" @click="inspectCheckAll()" />{{ option }} </label>
-          </p>
+          <label v-for="(option, index) in filteredOptions" :key="index" class="label-item list-item">
+            <input type="checkbox" name="checkbox-item" class="checkbox-item" @click="inspectCheckAll()" />{{ option }}
+          </label>
         </div>
       </div>
     </transition>
@@ -55,15 +54,8 @@ const filteredOptions = ref([
   "Hello3",
 ]);
 
-const toggleDropdown = (e) => {
-  // if (outsideClick.value === true) {
-  //   show.value = false;
-  // } else {
+const toggleDropdown = () => {
   show.value = !show.value;
-  // }
-
-  // outsideClick.value = false;
-  console.log("inside toggle", show.value);
 };
 
 const toggle = (e) => {
@@ -104,18 +96,10 @@ const inspectCheckAll = () => {
   }
 };
 
-const outsideClick = ref(false);
 const dropdownRef = ref(null);
-// :class="{ 'is-active': showModal }"
 
 onClickOutside(dropdownRef, (event) => {
-  // showModal.value = false;
   show.value = false;
-  outsideClick.value = true;
-  console.log(show.value);
-  // toggleDropdown();
-
-  console.log(event);
 });
 </script>
 
@@ -145,7 +129,6 @@ onClickOutside(dropdownRef, (event) => {
   max-width: 600px;
   margin: 0.2rem;
   border-radius: 0.3rem;
-  /* box-shadow: 2px 2px 20px 1px; */
   display: block;
   width: max-content;
   box-sizing: border-box;
@@ -157,9 +140,7 @@ onClickOutside(dropdownRef, (event) => {
   border-radius: 0.3rem;
 }
 .dropdown-list {
-  /* list-style-type: none; */
   padding: 0;
-  /* margin-top: 2px; */
 
   /* Scrolling in dropdown */
   max-height: 24rem; /* Maximum height of viewable content */
@@ -185,11 +166,6 @@ onClickOutside(dropdownRef, (event) => {
   margin: 0 0.3rem;
 }
 
-.label-item:hover,
-.label-item:focus {
-  cursor: pointer;
-  background-color: #f0f0f0;
-}
 /* .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s ease;
