@@ -1,25 +1,25 @@
 <template>
   <div>
-    <!-- <DropdownVue></DropdownVue> -->
-    <button @click="openModal">Show Modal</button>
-    <DropdownModal v-if="showModal" @closeModal="closeModal"></DropdownModal>
+    <Dropdown></Dropdown>
+    <!-- <button @click="openModal">Show Modal</button> -->
+    <!-- <DropdownModal v-if="showModal" @closeModal="closeModal"></DropdownModal> -->
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
-// import DropdownVue from "../components/modals/DropdownModal.vue";
-import DropdownModal from "../components/modals/DropdownModal.vue";
+// import { ref } from "vue";
+import Dropdown from "../components/Dropdown.vue";
+// import DropdownModal from "../components/modals/DropdownModal.vue";
 
-const showModal = ref(false);
+// const showModal = ref(false);
 
-const openModal = () => {
-  showModal.value = true;
-};
+// const openModal = () => {
+//   showModal.value = true;
+// };
 
-const closeModal = () => {
-  showModal.value = false;
-};
+// const closeModal = () => {
+//   showModal.value = false;
+// };
 
 //const filteredOptions = ref(["Hello1", "Hello2", "Hello3"]);
 </script>

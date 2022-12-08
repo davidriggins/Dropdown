@@ -6,10 +6,10 @@
       <transition name="fade">
         <div class="list-items-div" v-if="show" id="myselect">
           <p class="select-all list-item">
-            <label class="label-item"><input type="checkbox" class="checkbox-item" name="select-all" @click="toggle($event)" />Select All</label>
+            <label class="label-item"><input type="checkbox" class="checkbox-item select-all" name="select-all" @click="toggle($event)" />{{ selectAllText }}</label>
           </p>
           <p class="list-item" v-for="(option, index) in filteredOptions" :key="index">
-            <label class="label-item"> <input type="checkbox" name="checkbox-item" class="checkbox-item" @click="inspectCheckAll($event)" />{{ option }} </label>
+            <label class="label-item"> <input type="checkbox" name="checkbox-item" class="checkbox-item" @click="inspectCheckAll()" />{{ option }} </label>
           </p>
         </div>
       </transition>
@@ -27,6 +27,7 @@ var title = ref("This is a dropdown");
 title.value = title.value += " ⮟";
 
 var show = ref(false);
+var selectAllText = ref("Select All");
 
 const filteredOptions = ref(["Hello1", "HelloHelloHelloHello", "Hello3"]);
 
@@ -38,9 +39,15 @@ const toggle = (e) => {
       checkboxes[i].checked = e.target.checked;
     }
   }
+
+  if (e.target.checked) {
+    selectAllText.value = "Deselect All";
+  } else {
+    selectAllText.value = "Select All";
+  }
 };
 
-const inspectCheckAll = (e) => {
+const inspectCheckAll = () => {
   var checkboxes = document.getElementsByName("checkbox-item");
   var selectAll = document.getElementsByName("select-all");
   var count = 0;
@@ -57,6 +64,7 @@ const inspectCheckAll = (e) => {
 
   if (count < checkboxes.length) {
     selectAll[0].checked = false;
+    selectAllText.value = "Select All";
   }
 };
 </script>
@@ -76,6 +84,7 @@ const inspectCheckAll = (e) => {
 .input-button {
   display: inline-block;
   margin: 0.2rem;
+  /* box-shadow: 2px 2px 20px 1px; */
   z-index: 1; /* Puts item on top */
 }
 
@@ -83,13 +92,16 @@ const inspectCheckAll = (e) => {
   max-width: 600px;
   margin: 0.2rem;
   border-radius: 0.3rem;
+  /* box-shadow: 2px 2px 20px 1px; */
+  display: block;
+  width: max-content;
+  border: 1px solid #2b2d42;
 }
 
 .list-items-div {
   list-style-type: none;
   padding: 0;
-  margin-top: 2px;
-  border: 1px solid #2b2d42;
+  /* margin-top: 2px; */
 
   /* Scrolling in dropdown */
   max-height: 24rem; /* Maximum height of viewable content */
@@ -107,7 +119,7 @@ const inspectCheckAll = (e) => {
 .list-item:hover,
 .list-item:focus {
   cursor: pointer;
-  background-color: red;
+  background-color: #f0f0f0;
 }
 
 .list-item {
