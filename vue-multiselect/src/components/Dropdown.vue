@@ -1,6 +1,6 @@
 <template>
-  <div class="outer-div">
-    <input type="button" class="input-button" :value="title" style="padding: 0.3rem" @click="show = !show" />
+  <div class="outer-div" ref="dropdownRef">
+    <input type="button" class="input-button" :value="title" style="padding: 0.3rem" @click="toggleDropdown" />
 
     <transition name="fade">
       <div class="dropdown-content" v-if="show">
@@ -22,14 +22,49 @@
   script section =============================================
 */
 import { ref } from "vue";
+import { onClickOutside } from "@vueuse/core";
 
 var title = ref("This is a dropdown");
-title.value = title.value += " ⮟";
+title.value = title.value += "  ⮟";
 
 var show = ref(false);
 var selectAllText = ref("Select All");
 
-const filteredOptions = ref(["Hello1", "HelloHelloHelloHello", "Hello3"]);
+const filteredOptions = ref([
+  "Hello1",
+  "HelloHelloHelloHello",
+  "Hello3",
+  "Hello3",
+  "Hello3",
+  "Hello3",
+  "Hello3",
+  "Hello3",
+  "Hello3",
+  "Hello3",
+  "Hello3",
+  "Hello3",
+  "Hello3",
+  "Hello3",
+  "Hello3",
+  "Hello3",
+  "Hello3",
+  "Hello3",
+  "Hello3",
+  "Hello3",
+  "Hello3",
+  "Hello3",
+]);
+
+const toggleDropdown = (e) => {
+  // if (outsideClick.value === true) {
+  //   show.value = false;
+  // } else {
+  show.value = !show.value;
+  // }
+
+  // outsideClick.value = false;
+  console.log("inside toggle", show.value);
+};
 
 const toggle = (e) => {
   var checkboxes = document.getElementsByName("checkbox-item");
@@ -68,6 +103,20 @@ const inspectCheckAll = () => {
     selectAllText.value = "Select All";
   }
 };
+
+const outsideClick = ref(false);
+const dropdownRef = ref(null);
+// :class="{ 'is-active': showModal }"
+
+onClickOutside(dropdownRef, (event) => {
+  // showModal.value = false;
+  show.value = false;
+  outsideClick.value = true;
+  console.log(show.value);
+  // toggleDropdown();
+
+  console.log(event);
+});
 </script>
 
 <style scoped>
@@ -79,7 +128,10 @@ const inspectCheckAll = () => {
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+}
+
+.outer-div {
+  width: max-content;
 }
 
 .input-button {
@@ -96,6 +148,7 @@ const inspectCheckAll = () => {
   /* box-shadow: 2px 2px 20px 1px; */
   display: block;
   width: max-content;
+  box-sizing: border-box;
 }
 
 .select-all {
