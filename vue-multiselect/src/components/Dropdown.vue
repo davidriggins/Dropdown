@@ -2,18 +2,18 @@
   <div class="outer-div">
     <input type="button" class="input-button" :value="title" style="padding: 0.3rem" @click="show = !show" />
 
-    <div class="dropdown-list">
-      <transition name="fade">
-        <div class="list-items-div" v-if="show" id="myselect">
-          <p class="select-all list-item">
-            <label class="label-item"><input type="checkbox" class="checkbox-item select-all" name="select-all" @click="toggle($event)" />{{ selectAllText }}</label>
-          </p>
+    <transition name="fade">
+      <div class="dropdown-content" v-if="show">
+        <p class="select-all list-item">
+          <label class="label-item checkbox-item"> <input type="checkbox" class="checkbox-item select-all" name="select-all" @click="toggle($event)" />{{ selectAllText }} </label>
+        </p>
+        <div class="dropdown-list">
           <p class="list-item" v-for="(option, index) in filteredOptions" :key="index">
             <label class="label-item"> <input type="checkbox" name="checkbox-item" class="checkbox-item" @click="inspectCheckAll()" />{{ option }} </label>
           </p>
         </div>
-      </transition>
-    </div>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -60,6 +60,7 @@ const inspectCheckAll = () => {
 
   if (count === checkboxes.length) {
     selectAll[0].checked = true;
+    selectAllText.value = "Deselect All";
   }
 
   if (count < checkboxes.length) {
@@ -88,18 +89,22 @@ const inspectCheckAll = () => {
   z-index: 1; /* Puts item on top */
 }
 
-.dropdown-list {
+.dropdown-content {
   max-width: 600px;
   margin: 0.2rem;
   border-radius: 0.3rem;
   /* box-shadow: 2px 2px 20px 1px; */
   display: block;
   width: max-content;
-  border: 1px solid #2b2d42;
 }
 
-.list-items-div {
-  list-style-type: none;
+.select-all {
+  margin: 0.3rem 0;
+  border: 1px solid #2b2d42;
+  border-radius: 0.3rem;
+}
+.dropdown-list {
+  /* list-style-type: none; */
   padding: 0;
   /* margin-top: 2px; */
 
@@ -108,28 +113,30 @@ const inspectCheckAll = () => {
   overflow: hidden; /* Hides the overflow content */
   overflow-y: auto; /* Sets y scroll bars */
 
+  border: 1px solid #2b2d42;
   border-radius: 0.3rem;
   width: max-content; /* Sets the width to the size of content */
 }
 
-.label-item {
+.list-item {
+  padding: 0 0.3rem;
   display: block;
 }
-
 .list-item:hover,
 .list-item:focus {
   cursor: pointer;
   background-color: #f0f0f0;
 }
 
-.list-item {
-  padding: 0 0.3rem;
-}
-
 .list-item input {
   margin: 0 0.3rem;
 }
 
+.label-item:hover,
+.label-item:focus {
+  cursor: pointer;
+  background-color: #f0f0f0;
+}
 /* .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s ease;
