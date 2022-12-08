@@ -45,7 +45,8 @@
   overflow-x: auto;
   display: flex;
   flex-direction: column;
-  width: 640px;
+  width: auto;
+  height: auto;
   border-radius: 3px;
 }
 

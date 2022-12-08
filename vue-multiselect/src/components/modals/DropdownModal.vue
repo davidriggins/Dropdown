@@ -1,15 +1,11 @@
 <template>
-  <BaseModal>
-    <template v-slot:header> This is the header. </template>
-
+  <BaseModalB>
     <template v-slot:body> This is the body. </template>
-
-    <template v-slot:footer> This is the footer. </template>
-  </BaseModal>
+  </BaseModalB>
 </template>
 
 <script setup>
-import BaseModal from "@/components/modals/BaseModal.vue";
+import BaseModalB from "@/components/modals/BaseModalB.vue";
 </script>
 
 <style scoped>

@@ -1,0 +1,65 @@
+<template>
+  <transition name="modal-fade">
+    <!-- <div class="modal-backdrop" :class="showModal"> -->
+    <div class="modal" role="dialog" aria-labelledby="modalTitle" aria-describedby="modalDescription" ref="dropdownModalRef" :class="showModal">
+      <section class="modal-body" id="modalDescription" :class="showModal">
+        <slot name="body"> </slot>
+      </section>
+    </div>
+    <!-- </div> -->
+  </transition>
+</template>
+
+<script setup>
+import { ref } from "vue";
+import { onClickOutside } from "@vueuse/core";
+
+const showModal = ref(false);
+const dropdownModalRef = ref(null);
+
+// :class="{ 'is-active': showModal }"
+
+onClickOutside(dropdownModalRef, (event) => {
+  showModal.value = false;
+  console.log(event);
+});
+</script>
+
+<style scoped>
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background: #fff;
+  box-shadow: 2px 2px 20px 1px;
+  overflow-x: auto;
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  height: auto;
+  border-radius: 3px;
+}
+.modal-body {
+  position: relative;
+  padding: 2.4rem;
+}
+
+.modal-fade-enter,
+.modal-fade-leave-active {
+  opacity: 0;
+}
+
+.modal-fade-enter-active,
+.modal-fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+</style>
