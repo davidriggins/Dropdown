@@ -1,19 +1,64 @@
 <template>
-  <BaseModalB>
-    <template v-slot:body> This is the body. </template>
-  </BaseModalB>
+  <transition name="modal-fade">
+    <div class="modal" role="dialog" aria-labelledby="modalTitle" ref="dropdownModalRef" aria-describedby="modalDescription">
+      <section class="modal-body" id="modalDescription">
+        <Dropdown> </Dropdown>
+      </section>
+    </div>
+  </transition>
 </template>
 
 <script setup>
-import BaseModalB from "@/components/modals/BaseModalB.vue";
+import { ref } from "vue";
+import { onClickOutside } from "@vueuse/core";
+
+import Dropdown from "@/components/Dropdown.vue";
+
+const dropdownModalRef = ref(null);
+
+const emits = defineEmits("closeModal");
+
+onClickOutside(dropdownModalRef, (event) => {
+  emits("closeModal");
+  console.log(event);
+});
 </script>
 
 <style scoped>
-.newCustomer {
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
   display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  padding: 0;
-  margin: 0;
+  justify-content: center;
+  align-items: center;
 }
+
+.modal {
+  background: #fff;
+  box-shadow: 2px 2px 20px 1px;
+  overflow-x: auto;
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  height: auto;
+  border-radius: 3px;
+}
+.modal-body {
+  position: relative;
+  padding: 0;
+}
+
+/* .modal-fade-enter,
+.modal-fade-leave-active {
+  opacity: 0;
+}
+
+.modal-fade-enter-active,
+.modal-fade-leave-active {
+  transition: opacity 0.5s ease;
+} */
 </style>

@@ -2,7 +2,7 @@
   <div>
     <!-- <DropdownVue></DropdownVue> -->
     <button @click="openModal">Show Modal</button>
-    <DropdownModal v-if="showModal"></DropdownModal>
+    <DropdownModal v-if="showModal" @closeModal="closeModal"></DropdownModal>
   </div>
 </template>
 
@@ -15,6 +15,10 @@ const showModal = ref(false);
 
 const openModal = () => {
   showModal.value = true;
+};
+
+const closeModal = () => {
+  showModal.value = false;
 };
 
 //const filteredOptions = ref(["Hello1", "Hello2", "Hello3"]);

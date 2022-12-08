@@ -22,7 +22,6 @@
   script section =============================================
 */
 import { ref } from "vue";
-import BaseModal from "@/components/modals/BaseModal";
 
 var title = ref("This is a dropdown");
 title.value = title.value += " ⮟";
@@ -119,7 +118,7 @@ const inspectCheckAll = (e) => {
   margin: 0 0.3rem;
 }
 
-.fade-enter-active,
+/* .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s ease;
 }
@@ -127,5 +126,5 @@ const inspectCheckAll = (e) => {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
-}
+} */
 </style>
