@@ -5,10 +5,11 @@
     </transition>
     <transition name="fade">
       <div class="dropdown-content" v-if="show">
-        <label class="select-all list-item"> <input type="checkbox" class="select-all" name="select-all" @click="toggle($event)" />{{ selectAllText }} </label>
+        <input type="text" placeholder="Search" v-model="input" class="input-text list-item" v-autofocus />
+        <label class="select-all list-item"> <input type="checkbox" class="select-all" name="select-all" @click="toggle($event)" /> {{ selectAllText }} </label>
 
         <div class="dropdown-list">
-          <label v-for="(option, index) in filteredOptions" :key="index" class="list-item"> <input type="checkbox" name="checkbox-item" @click="inspectCheckAll()" />{{ option }} </label>
+          <label v-for="(option, index) in filteredList()" :key="index" class="list-item"> <input type="checkbox" name="checkbox-item" @click="inspectCheckAll()" /> {{ option }} </label>
         </div>
       </div>
     </transition>
@@ -21,6 +22,7 @@
 */
 import { ref } from "vue";
 import { onClickOutside } from "@vueuse/core";
+import { vAutofocus } from "@/directives/vAutofocus";
 
 var title = ref("This is a dropdown");
 title.value = title.value += "  ⮟";
@@ -28,30 +30,35 @@ title.value = title.value += "  ⮟";
 var show = ref(false);
 var selectAllText = ref("Select All");
 
-const filteredOptions = ref([
+const optionsList = ref([
   "Hello1",
   "HelloHelloHelloHello",
   "Hello3",
-  "Hello3",
-  "Hello3",
-  "Hello3",
-  "Hello3",
-  "Hello3",
-  "Hello3",
-  "Hello3",
-  "Hello3",
-  "Hello3",
-  "Hello3",
-  "Hello3",
-  "Hello3",
-  "Hello3",
-  "Hello3",
-  "Hello3",
-  "Hello3",
-  "Hello3",
-  "Hello3",
-  "Hello3",
+  "Hello4",
+  "Hello5",
+  "Hello6",
+  "Hello7",
+  "Hello8",
+  "Hello9",
+  "Hello10",
+  "Hello11",
+  "Hello12",
+  "Hello13",
+  "Hello14",
+  "Hello15",
+  "Hello16",
+  "Hello17",
+  "Hello18",
+  "Hello19",
+  "Hello20",
+  "Hello21",
+  "Hello22",
 ]);
+
+let input = ref("");
+const filteredList = () => {
+  return optionsList.value.filter((option) => option.toLowerCase().includes(input.value.toLowerCase()));
+};
 
 const toggleDropdown = () => {
   show.value = !show.value;
@@ -145,6 +152,12 @@ onClickOutside(dropdownRef, (event) => {
   box-shadow: 2px 2px 10px 1px;
 }
 
+.input-text {
+  margin: 0.3rem 0;
+  border: 1px solid #ccc;
+  border-radius: 0.3rem;
+}
+
 .select-all {
   margin: 0.3rem 0;
   /* border: 1px solid #2b2d42; */
@@ -155,7 +168,7 @@ onClickOutside(dropdownRef, (event) => {
   padding: 0;
 
   /* Scrolling in dropdown */
-  max-height: 24rem; /* Maximum height of viewable content */
+  max-height: 30rem; /* Maximum height of viewable content */
   overflow: hidden; /* Hides the overflow content */
   overflow-y: auto; /* Sets y scroll bars */
 
@@ -168,6 +181,7 @@ onClickOutside(dropdownRef, (event) => {
   padding: 0 0.3rem;
   display: block;
 }
+
 .list-item:hover,
 .list-item:focus {
   cursor: pointer;
