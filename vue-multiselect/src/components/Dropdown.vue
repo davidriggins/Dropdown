@@ -5,11 +5,13 @@
     </transition>
     <transition name="fade">
       <div class="dropdown-content" v-if="storeDropdown.show">
-        <input type="text" placeholder="Search" v-model="input" class="input-text list-item" v-autofocus />
+        <input type="text" placeholder="Search" v-model="storeDropdown.input" class="input-text list-item" v-autofocus />
         <label class="select-all list-item"> <input type="checkbox" class="select-all" name="select-all" @click="storeDropdown.toggleCheckbox($event)" /> {{ storeDropdown.selectAllText }} </label>
 
         <div class="dropdown-list">
-          <label v-for="(option, index) in filteredList()" :key="index" class="list-item"> <input type="checkbox" name="checkbox-item" @click="storeDropdown.inspectCheckAll()" /> {{ option }} </label>
+          <label v-for="(option, index) in storeDropdown.filteredList()" :key="index" class="list-item">
+            <input type="checkbox" name="checkbox-item" @click="storeDropdown.inspectCheckAll()" /> {{ option }}
+          </label>
         </div>
       </div>
     </transition>
@@ -32,15 +34,10 @@ const storeDropdown = useStoreDropdown();
 var title = ref("This is a dropdown");
 title.value = title.value += "  ⮟";
 
-// Filter dropdown list
-let input = ref("");
-const filteredList = () => {
-  return storeDropdown.optionsList.filter((option) => option.toLowerCase().includes(input.value.toLowerCase()));
-};
-
 // Click outside
 const dropdownRef = ref(null);
 onClickOutside(dropdownRef, (/*event*/) => {
+  storeDropdown.clear();
   storeDropdown.show = false;
 });
 </script>

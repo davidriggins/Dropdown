@@ -29,6 +29,7 @@ export const useStoreDropdown = defineStore("storeDropdown", {
       ],
       show: false,
       selectAllText: "Select All",
+      input: "",
     };
   },
   actions: {
@@ -71,6 +72,27 @@ export const useStoreDropdown = defineStore("storeDropdown", {
         selectAll[0].checked = false;
         this.selectAllText = "Select All";
       }
+    },
+
+    filteredList() {
+      return this.optionsList.filter((option) => option.toLowerCase().includes(this.input.toLowerCase()));
+    },
+
+    clear() {
+      var checkboxes = document.getElementsByName("checkbox-item");
+      var selectAll = document.getElementsByName("select-all");
+
+      for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+          checkboxes[i].checked = false;
+        }
+      }
+
+      if (selectAll[0].checked) {
+        selectAll[0].checked = false;
+      }
+
+      this.input = "";
     },
   },
   getters: {},
