@@ -1,15 +1,14 @@
 <template>
   <div class="outer-div" ref="dropdownRef">
-    <input type="button" class="input-button list-item" :value="title" style="padding: 0.3rem" @click="toggleDropdown" />
-
+    <transition name="button-click">
+      <input type="button" class="input-button" :value="title" style="padding: 0.3rem" @click="toggleDropdown" />
+    </transition>
     <transition name="fade">
       <div class="dropdown-content" v-if="show">
-        <label class="checkbox-item select-all list-item"> <input type="checkbox" class="checkbox-item select-all" name="select-all" @click="toggle($event)" />{{ selectAllText }} </label>
+        <label class="select-all list-item"> <input type="checkbox" class="select-all" name="select-all" @click="toggle($event)" />{{ selectAllText }} </label>
 
         <div class="dropdown-list">
-          <label v-for="(option, index) in filteredOptions" :key="index" class="label-item list-item">
-            <input type="checkbox" name="checkbox-item" class="checkbox-item" @click="inspectCheckAll()" />{{ option }}
-          </label>
+          <label v-for="(option, index) in filteredOptions" :key="index" class="list-item"> <input type="checkbox" name="checkbox-item" @click="inspectCheckAll()" />{{ option }} </label>
         </div>
       </div>
     </transition>
@@ -121,8 +120,19 @@ onClickOutside(dropdownRef, (event) => {
 .input-button {
   display: inline-block;
   margin: 0.2rem;
-  /* box-shadow: 2px 2px 20px 1px; */
+  border: 1px solid #ccc;
+
+  border-radius: 0.3rem;
+
+  box-shadow: 2px 2px 10px 1px;
   z-index: 1; /* Puts item on top */
+
+  transition: background-color 0.5s;
+}
+
+.input-button:hover {
+  cursor: pointer;
+  background-color: #ccc;
 }
 
 .dropdown-content {
@@ -132,11 +142,13 @@ onClickOutside(dropdownRef, (event) => {
   display: block;
   width: max-content;
   box-sizing: border-box;
+  box-shadow: 2px 2px 10px 1px;
 }
 
 .select-all {
   margin: 0.3rem 0;
-  border: 1px solid #2b2d42;
+  /* border: 1px solid #2b2d42; */
+  border: 1px solid #ccc;
   border-radius: 0.3rem;
 }
 .dropdown-list {
@@ -147,7 +159,7 @@ onClickOutside(dropdownRef, (event) => {
   overflow: hidden; /* Hides the overflow content */
   overflow-y: auto; /* Sets y scroll bars */
 
-  border: 1px solid #2b2d42;
+  border: 1px solid #ccc;
   border-radius: 0.3rem;
   width: max-content; /* Sets the width to the size of content */
 }
@@ -162,17 +174,13 @@ onClickOutside(dropdownRef, (event) => {
   background-color: #f0f0f0;
 }
 
-.list-item input {
-  margin: 0 0.3rem;
+.button-click-enter-active,
+.button-click-leave-active {
+  transition: opacity 5s ease-in-out;
 }
 
-/* .fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
+.button-click-enter-from,
+.button-click-leave-to {
   opacity: 0;
-} */
+}
 </style>
