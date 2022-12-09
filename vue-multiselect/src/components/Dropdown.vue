@@ -1,12 +1,13 @@
 <template>
   <div class="outer-div" ref="dropdownRef">
     <transition name="button-click">
-      <input type="button" class="input-button" :value="title" style="padding: 0.3rem" @click="storeDropdown.toggleDropdown" />
+      <input type="button" class="dropdown-button" :value="title" style="padding: 0.3rem" @click="storeDropdown.toggleDropdown" />
     </transition>
     <transition name="fade">
       <div class="dropdown-content" v-if="storeDropdown.show">
-        <input type="text" placeholder="Search" v-model="storeDropdown.input" class="input-text list-item" v-autofocus />
+        <input type="text" placeholder="Search" v-model="storeDropdown.input" class="search-text list-item" v-autofocus />
         <label class="select-all list-item"> <input type="checkbox" class="select-all" name="select-all" @click="storeDropdown.toggleCheckbox($event)" /> {{ storeDropdown.selectAllText }} </label>
+        <a href="#" class="clear-link">Clear All</a>
 
         <div class="dropdown-list">
           <label v-for="(option, index) in storeDropdown.filteredList()" :key="index" class="list-item">
@@ -57,7 +58,7 @@ onClickOutside(dropdownRef, (/*event*/) => {
   width: max-content;
 }
 
-.input-button {
+.dropdown-button {
   display: inline-block;
   margin: 0.2rem;
   border: 1px solid #ccc;
@@ -70,7 +71,7 @@ onClickOutside(dropdownRef, (/*event*/) => {
   transition: background-color 0.5s;
 }
 
-.input-button:hover {
+.dropdown-button:hover {
   cursor: pointer;
   background-color: #ccc;
 }
@@ -81,11 +82,11 @@ onClickOutside(dropdownRef, (/*event*/) => {
   border-radius: 0.3rem;
   display: block;
   width: max-content;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   box-shadow: 2px 2px 10px 1px;
 }
 
-.input-text {
+.search-text {
   margin: 0.3rem 0;
   border: 1px solid #ccc;
   border-radius: 0.3rem;
