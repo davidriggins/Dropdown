@@ -1,15 +1,15 @@
 <template>
   <div class="outer-div" ref="dropdownRef">
     <transition name="button-click">
-      <input type="button" class="input-button" :value="title" style="padding: 0.3rem" @click="toggleDropdown" />
+      <input type="button" class="input-button" :value="title" style="padding: 0.3rem" @click="storeDropdown.toggleDropdown" />
     </transition>
     <transition name="fade">
-      <div class="dropdown-content" v-if="show">
+      <div class="dropdown-content" v-if="storeDropdown.show">
         <input type="text" placeholder="Search" v-model="input" class="input-text list-item" v-autofocus />
-        <label class="select-all list-item"> <input type="checkbox" class="select-all" name="select-all" @click="toggle($event)" /> {{ selectAllText }} </label>
+        <label class="select-all list-item"> <input type="checkbox" class="select-all" name="select-all" @click="storeDropdown.toggleCheckbox($event)" /> {{ storeDropdown.selectAllText }} </label>
 
         <div class="dropdown-list">
-          <label v-for="(option, index) in filteredList()" :key="index" class="list-item"> <input type="checkbox" name="checkbox-item" @click="inspectCheckAll()" /> {{ option }} </label>
+          <label v-for="(option, index) in filteredList()" :key="index" class="list-item"> <input type="checkbox" name="checkbox-item" @click="storeDropdown.inspectCheckAll()" /> {{ option }} </label>
         </div>
       </div>
     </transition>
@@ -17,102 +17,38 @@
 </template>
 
 <script setup>
-/*
-  script section =============================================
-*/
+/*========================================================================
+  script section 
+  ========================================================================*/
 import { ref } from "vue";
+import { useStoreDropdown } from "@/stores/storeDropdown";
 import { onClickOutside } from "@vueuse/core";
 import { vAutofocus } from "@/directives/vAutofocus";
 
+// Store
+const storeDropdown = useStoreDropdown();
+
+// Dropdown button content
 var title = ref("This is a dropdown");
 title.value = title.value += "  ⮟";
 
-var show = ref(false);
-var selectAllText = ref("Select All");
-
-const optionsList = ref([
-  "Hello1",
-  "HelloHelloHelloHello",
-  "Hello3",
-  "Hello4",
-  "Hello5",
-  "Hello6",
-  "Hello7",
-  "Hello8",
-  "Hello9",
-  "Hello10",
-  "Hello11",
-  "Hello12",
-  "Hello13",
-  "Hello14",
-  "Hello15",
-  "Hello16",
-  "Hello17",
-  "Hello18",
-  "Hello19",
-  "Hello20",
-  "Hello21",
-  "Hello22",
-]);
-
+// Filter dropdown list
 let input = ref("");
 const filteredList = () => {
-  return optionsList.value.filter((option) => option.toLowerCase().includes(input.value.toLowerCase()));
+  return storeDropdown.optionsList.filter((option) => option.toLowerCase().includes(input.value.toLowerCase()));
 };
 
-const toggleDropdown = () => {
-  show.value = !show.value;
-};
-
-const toggle = (e) => {
-  var checkboxes = document.getElementsByName("checkbox-item");
-
-  for (var i = 0; i < checkboxes.length; i++) {
-    if (checkboxes[i] != e.target) {
-      checkboxes[i].checked = e.target.checked;
-    }
-  }
-
-  if (e.target.checked) {
-    selectAllText.value = "Deselect All";
-  } else {
-    selectAllText.value = "Select All";
-  }
-};
-
-const inspectCheckAll = () => {
-  var checkboxes = document.getElementsByName("checkbox-item");
-  var selectAll = document.getElementsByName("select-all");
-  var count = 0;
-
-  for (var i = 0; i < checkboxes.length; i++) {
-    if (checkboxes[i].checked) {
-      count++;
-    }
-  }
-
-  if (count === checkboxes.length) {
-    selectAll[0].checked = true;
-    selectAllText.value = "Deselect All";
-  }
-
-  if (count < checkboxes.length) {
-    selectAll[0].checked = false;
-    selectAllText.value = "Select All";
-  }
-};
-
+// Click outside
 const dropdownRef = ref(null);
-
-onClickOutside(dropdownRef, (event) => {
-  show.value = false;
+onClickOutside(dropdownRef, (/*event*/) => {
+  storeDropdown.show = false;
 });
 </script>
 
 <style scoped>
-/* 
-  style section =============================================
-*/
+/*========================================================================
+  style section 
+  ========================================================================*/
 
 /* CSS Reset */
 * {
