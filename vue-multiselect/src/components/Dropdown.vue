@@ -1,21 +1,26 @@
 <template>
   <div class="outer-div" ref="dropdownRef">
-    <transition name="button-click">
-      <input type="button" class="dropdown-button" :value="title" style="padding: 0.3rem" @click="storeDropdown.toggleDropdown" />
-    </transition>
-    <transition name="fade">
-      <div class="dropdown-content" v-if="storeDropdown.show">
-        <input type="text" placeholder="Search" v-model="storeDropdown.input" class="search-text list-item" v-autofocus />
-        <label class="select-all list-item"> <input type="checkbox" class="select-all" name="select-all" @click="storeDropdown.toggleCheckbox($event)" /> {{ storeDropdown.selectAllText }} </label>
-        <a href="#" class="clear-link">Clear All</a>
+    <!-- <transition name="button-click"> -->
+    <!-- <input type="button" class="dropdown-button" :value="title" style="padding: 0.3rem" @click="storeDropdown.toggleDropdown" /> -->
+    <Button class="dropdown-button" @click="storeDropdown.toggleDropdown">{{ buttonText }}</Button>
+    <!-- </transition> -->
+    <!-- <transition name="fade"> -->
+    <div class="dropdown-content" v-if="storeDropdown.show">
+      <input type="text" placeholder="Search" v-model="storeDropdown.input" class="search-text list-item" v-autofocus />
+      <Button @click="clearAll" class="clear-button">Clear All</Button>
+      <Button class="close-button">Close</Button>
 
-        <div class="dropdown-list">
-          <label v-for="(option, index) in storeDropdown.filteredList()" :key="index" class="list-item">
-            <input type="checkbox" name="checkbox-item" @click="storeDropdown.inspectCheckAll()" /> {{ option }}
-          </label>
-        </div>
+      <br />
+      <label class="select-all list-item"> <input type="checkbox" class="select-all-cb" name="select-all" @click="storeDropdown.toggleCheckbox($event)" /> {{ storeDropdown.selectAllText }} </label>
+
+      <br />
+      <div class="dropdown-list">
+        <label v-for="(option, index) in storeDropdown.filteredList()" :key="index" class="list-item">
+          <input type="checkbox" name="checkbox-item" class="list-item-cb" @click="storeDropdown.inspectCheckAll()" />{{ option }}
+        </label>
       </div>
-    </transition>
+    </div>
+    <!-- </transition> -->
   </div>
 </template>
 
@@ -27,13 +32,18 @@ import { ref } from "vue";
 import { useStoreDropdown } from "@/stores/storeDropdown";
 import { onClickOutside } from "@vueuse/core";
 import { vAutofocus } from "@/directives/vAutofocus";
+import Button from "@/components/Button.vue";
 
 // Store
 const storeDropdown = useStoreDropdown();
 
 // Dropdown button content
-var title = ref("This is a dropdown");
-title.value = title.value += "  ⮟";
+var buttonText = ref("This is my dropdown");
+buttonText.value = buttonText.value += "  ⮟";
+
+const clearAll = () => {
+  storeDropdown.clear();
+};
 
 // Click outside
 const dropdownRef = ref(null);
@@ -45,7 +55,7 @@ onClickOutside(dropdownRef, (/*event*/) => {
 
 <style scoped>
 /*========================================================================
-  style section 
+  style section
   ========================================================================*/
 
 /* CSS Reset */
@@ -59,47 +69,82 @@ onClickOutside(dropdownRef, (/*event*/) => {
 }
 
 .dropdown-button {
-  display: inline-block;
+  display: block;
+  position: relative;
   margin: 0.2rem;
   border: 1px solid #ccc;
+  /* box-shadow: 1px 2px 7px 1px; */
 
   border-radius: 0.3rem;
+  /* font-size: 12px; */
+  z-index: 1;
 
-  box-shadow: 2px 2px 10px 1px;
-  z-index: 1; /* Puts item on top */
-
-  transition: background-color 0.5s;
+  /* transition: background-color 0.5s; */
 }
 
-.dropdown-button:hover {
+/* .dropdown-button:hover {
   cursor: pointer;
   background-color: #ccc;
-}
+} */
 
 .dropdown-content {
+  position: relative;
   max-width: 600px;
   margin: 0.2rem;
+  padding: 0.2rem;
   border-radius: 0.3rem;
-  display: block;
+  display: inline-block;
   width: max-content;
+  border: 1px solid #ccc;
   /* box-sizing: border-box; */
-  box-shadow: 2px 2px 10px 1px;
+  /* box-shadow: 1px 2px 7px 1px; */
+  /* background-color: hsla(0, 0%, 100%, 0); */
+  background-color: rgb(228, 239, 255);
 }
 
 .search-text {
+  position: relative;
+  display: block;
   margin: 0.3rem 0;
   border: 1px solid #ccc;
   border-radius: 0.3rem;
+  min-width: 50px;
 }
 
 .select-all {
+  position: relative;
+  display: block;
   margin: 0.3rem 0;
+  padding: 0 5rem;
   /* border: 1px solid #2b2d42; */
   border: 1px solid #ccc;
   border-radius: 0.3rem;
+  float: left;
+  z-index: 1;
+}
+
+.select-all-cb {
+  /* margin-right: 0.1rem; */
+}
+
+.clear-button {
+  margin: 0.2rem;
+  font-size: 12px;
+  float: left;
+}
+
+.close-button {
+  margin: 0.2rem;
+  font-size: 12px;
+  float: right;
 }
 .dropdown-list {
+  position: relative;
+  display: block;
+  float: left;
   padding: 0;
+
+  width: 100%;
 
   /* Scrolling in dropdown */
   max-height: 30rem; /* Maximum height of viewable content */
@@ -108,12 +153,16 @@ onClickOutside(dropdownRef, (/*event*/) => {
 
   border: 1px solid #ccc;
   border-radius: 0.3rem;
-  width: max-content; /* Sets the width to the size of content */
+  /* width: max-content; */ /* Sets the width to the size of content */
+  /* background-color: hsla(0, 0%, 100%, 0); */
 }
 
 .list-item {
-  padding: 0 0.3rem;
+  position: relative;
   display: block;
+  padding: 0 0.3rem;
+  width: 100%;
+  background-color: white;
 }
 
 .list-item:hover,
@@ -122,7 +171,10 @@ onClickOutside(dropdownRef, (/*event*/) => {
   background-color: #f0f0f0;
 }
 
-.button-click-enter-active,
+.list-item-cb {
+  margin-right: 0.3rem;
+}
+/* .button-click-enter-active,
 .button-click-leave-active {
   transition: opacity 5s ease-in-out;
 }
@@ -130,5 +182,5 @@ onClickOutside(dropdownRef, (/*event*/) => {
 .button-click-enter-from,
 .button-click-leave-to {
   opacity: 0;
-}
+} */
 </style>

@@ -5,7 +5,7 @@ export const useStoreDropdown = defineStore("storeDropdown", {
     return {
       optionsList: [
         "Hello1",
-        "HelloHelloHelloHello",
+        "HelloHelloHelloHelloHelloHello",
         "Hello3",
         "Hello4",
         "Hello5",
@@ -23,6 +23,11 @@ export const useStoreDropdown = defineStore("storeDropdown", {
         "Hello17",
         "Hello18",
         "Hello19",
+        "Hello20",
+        "Hello21",
+        "Hello22",
+        "Hello23",
+        "Hello24",
       ],
       show: false,
       selectAllText: "Select All",
