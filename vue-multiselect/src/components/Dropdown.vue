@@ -5,18 +5,18 @@
     <Button class="dropdown-button" @click="storeDropdown.toggleDropdown">{{ buttonText }}</Button>
     <!-- </transition> -->
     <!-- <transition name="fade"> -->
-    <div class="dropdown-content" v-if="storeDropdown.show">
+    <div class="dropdown-content" id="dropdown-div" v-if="storeDropdown.show">
       <input type="text" placeholder="Search" v-model="storeDropdown.input" class="search-text list-item" v-autofocus />
       <Button @click="clearAll" class="clear-button">Clear All</Button>
-      <Button class="close-button">Close</Button>
+      <Button @click="closeButton" class="close-button">Close</Button>
 
       <br />
-      <label class="select-all list-item"> <input type="checkbox" class="select-all-cb" name="select-all" @click="storeDropdown.toggleCheckbox($event)" /> {{ storeDropdown.selectAllText }} </label>
+      <label class="select-all list-item"> <input type="checkbox" class="select-all-cb" name="select-all" @click="storeDropdown.toggleSelectAll" /> {{ storeDropdown.selectAllText }} </label>
 
       <br />
       <div class="dropdown-list">
         <label v-for="(option, index) in storeDropdown.filteredList()" :key="index" class="list-item">
-          <input type="checkbox" name="checkbox-item" class="list-item-cb" @click="storeDropdown.inspectCheckAll()" />{{ option }}
+          <input type="checkbox" name="checkbox-item" class="list-item-cb" @click="storeDropdown.toggleCheckbox" />{{ option }}
         </label>
       </div>
     </div>
@@ -26,7 +26,7 @@
 
 <script setup>
 /*========================================================================
-  script section 
+  script section
   ========================================================================*/
 import { ref } from "vue";
 import { useStoreDropdown } from "@/stores/storeDropdown";
@@ -45,10 +45,29 @@ const clearAll = () => {
   storeDropdown.clear();
 };
 
+const closeButton = () => {
+  console.log("Close button checked");
+  console.log(storeDropdown.checkboxesChecked);
+};
+
+const isVisible = (elem) => {
+  console.log("Hello2");
+  if (elem) {
+    console.log("not null");
+  }
+  var coords = elem.getBoundingClientRect();
+  console.log("heelo3");
+  return Math.abs(coords.top) <= coords.height;
+};
+
 // Click outside
 const dropdownRef = ref(null);
 onClickOutside(dropdownRef, (/*event*/) => {
-  storeDropdown.clear();
+  const el = document.getElementById("dropdown-div");
+
+  if (el) {
+    storeDropdown.clear();
+  }
   storeDropdown.show = false;
 });
 </script>
@@ -99,7 +118,7 @@ onClickOutside(dropdownRef, (/*event*/) => {
   /* box-sizing: border-box; */
   /* box-shadow: 1px 2px 7px 1px; */
   /* background-color: hsla(0, 0%, 100%, 0); */
-  background-color: rgb(228, 239, 255);
+  background-color: #fbfbfb;
 }
 
 .search-text {

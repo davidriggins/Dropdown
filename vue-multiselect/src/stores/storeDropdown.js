@@ -31,6 +31,7 @@ export const useStoreDropdown = defineStore("storeDropdown", {
       ],
       show: false,
       selectAllText: "Select All",
+      checkboxesChecked: [],
       input: "",
     };
   },
@@ -38,12 +39,18 @@ export const useStoreDropdown = defineStore("storeDropdown", {
     toggleDropdown() {
       this.show = !this.show;
     },
-    toggleCheckbox(e) {
+    toggleSelectAll(e) {
+      this.checkboxesChecked.length = 0;
       var checkboxes = document.getElementsByName("checkbox-item");
+      this.checkboxesChecked.length = 0;
 
       for (var i = 0; i < checkboxes.length; i++) {
         if (checkboxes[i] != e.target) {
           checkboxes[i].checked = e.target.checked;
+          if (checkboxes[i].checked) {
+            var label = checkboxes[i].parentElement.textContent.trim();
+            this.checkboxesChecked.push(label);
+          }
         }
       }
 
@@ -54,13 +61,16 @@ export const useStoreDropdown = defineStore("storeDropdown", {
       }
     },
 
-    inspectCheckAll() {
+    toggleCheckbox() {
       var checkboxes = document.getElementsByName("checkbox-item");
       var selectAll = document.getElementsByName("select-all");
+      this.checkboxesChecked.length = 0;
       var count = 0;
 
       for (var i = 0; i < checkboxes.length; i++) {
         if (checkboxes[i].checked) {
+          var label = checkboxes[i].parentElement.textContent.trim();
+          this.checkboxesChecked.push(label);
           count++;
         }
       }
@@ -89,6 +99,8 @@ export const useStoreDropdown = defineStore("storeDropdown", {
           checkboxes[i].checked = false;
         }
       }
+
+      this.checkboxesChecked.length = 0;
 
       if (selectAll[0].checked) {
         selectAll[0].checked = false;
