@@ -9,11 +9,11 @@
 <script setup>
 import { onBeforeMount } from "vue";
 
-const props = defineProps({
-  buttonText: {
-    type: String,
-  },
-});
+// const props = defineProps({
+//   buttonText: {
+//     type: String,
+//   },
+// });
 
 onBeforeMount(() => {});
 </script>
@@ -29,28 +29,26 @@ button {
   background-color: #eee;
 
   /* box-shadow: 2px 2px 10px 1px; */
-  transition: background-color 0.5s;
+  /* transition: background-color 0.5s; */
 }
 
 button:visited {
-  /* color: #012049; */
 }
 
 button:hover {
   cursor: pointer;
-  background-color: #ccc;
+  filter: brightness(90%);
 }
 
 button:focus {
   cursor: pointer;
-  /* background-color: #eee; */
 }
 
-a:active {
-  /* color: #03045e; */
+button:active {
+  border: 2px double #777;
 }
 
-.button-click-enter-active,
+/* .button-click-enter-active,
 .button-click-leave-active {
   transition: opacity 5s ease-in-out;
 }
@@ -58,7 +56,5 @@ a:active {
 .button-click-enter-from,
 .button-click-leave-to {
   opacity: 0;
-}
-.qam-button {
-}
+} */
 </style>

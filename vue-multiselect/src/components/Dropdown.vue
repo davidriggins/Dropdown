@@ -1,10 +1,7 @@
 <template>
   <div class="outer-div" ref="dropdownRef">
-    <!-- <transition name="button-click"> -->
-    <!-- <input type="button" class="dropdown-button" :value="title" style="padding: 0.3rem" @click="storeDropdown.toggleDropdown" /> -->
     <Button class="dropdown-button" @click="storeDropdown.toggleDropdown">{{ buttonText }}</Button>
-    <!-- </transition> -->
-    <!-- <transition name="fade"> -->
+
     <div class="dropdown-content" id="dropdown-div" v-if="storeDropdown.show">
       <input type="text" placeholder="Search" v-model="storeDropdown.input" class="search-text list-item" v-autofocus />
       <Button @click="clearAll" class="clear-button">Clear All</Button>
@@ -22,7 +19,6 @@
         </span>
       </div>
     </div>
-    <!-- </transition> -->
   </div>
 </template>
 
@@ -30,11 +26,13 @@
 /*========================================================================
   script section
   ========================================================================*/
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { useStoreDropdown } from "@/stores/storeDropdown";
 import { onClickOutside } from "@vueuse/core";
 import { vAutofocus } from "@/directives/vAutofocus";
 import Button from "@/components/Button.vue";
+
+onMounted(() => {});
 
 // Store
 const storeDropdown = useStoreDropdown();
@@ -50,16 +48,8 @@ const clearAll = () => {
 const closeButton = () => {
   console.log("Close button checked");
   console.log(storeDropdown.checkboxesChecked);
-};
-
-const isVisible = (elem) => {
-  console.log("Hello2");
-  if (elem) {
-    console.log("not null");
-  }
-  var coords = elem.getBoundingClientRect();
-  console.log("heelo3");
-  return Math.abs(coords.top) <= coords.height;
+  storeDropdown.clear();
+  storeDropdown.show = false;
 };
 
 // Click outside
@@ -78,6 +68,7 @@ onClickOutside(dropdownRef, (/*event*/) => {
 /*========================================================================
   style section
   ========================================================================*/
+@import "@/assets/styles/project.css";
 
 /* CSS Reset */
 * {

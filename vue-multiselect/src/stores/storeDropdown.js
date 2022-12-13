@@ -33,6 +33,7 @@ export const useStoreDropdown = defineStore("storeDropdown", {
       selectAllText: "Select All",
       checkboxesChecked: [],
       input: "",
+      maxItemsShown: 25,
     };
   },
   actions: {
@@ -87,6 +88,10 @@ export const useStoreDropdown = defineStore("storeDropdown", {
     },
 
     filteredList() {
+      if (this.optionsList.filter((option) => option.toLowerCase().includes(this.input.toLowerCase())).length > this.maxItemsShown) {
+        return [];
+      }
+
       return this.optionsList.filter((option) => option.toLowerCase().includes(this.input.toLowerCase()));
     },
 
@@ -107,6 +112,7 @@ export const useStoreDropdown = defineStore("storeDropdown", {
       }
 
       this.input = "";
+      this.selectAllText = "Select All";
     },
   },
   getters: {},
