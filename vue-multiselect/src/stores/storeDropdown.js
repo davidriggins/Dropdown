@@ -5,7 +5,7 @@ export const useStoreDropdown = defineStore("storeDropdown", {
     return {
       optionsList: [
         "Hello1",
-        "HelloHelloHelloHelloHelloHello",
+        "12345678911234567892123456789312345678941234567895123456789612345678971234567898",
         "Hello3",
         "Hello4",
         "Hello5",

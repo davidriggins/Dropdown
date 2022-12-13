@@ -15,9 +15,11 @@
 
       <br />
       <div class="dropdown-list">
-        <label v-for="(option, index) in storeDropdown.filteredList()" :key="index" class="list-item">
-          <input type="checkbox" name="checkbox-item" class="list-item-cb" @click="storeDropdown.toggleCheckbox" />{{ option }}
-        </label>
+        <span class="nowrap"
+          ><label v-for="(option, index) in storeDropdown.filteredList()" :key="index" class="list-item">
+            <input type="checkbox" name="checkbox-item" class="list-item-cb" @click="storeDropdown.toggleCheckbox" />{{ option }}
+          </label>
+        </span>
       </div>
     </div>
     <!-- </transition> -->
@@ -87,6 +89,10 @@ onClickOutside(dropdownRef, (/*event*/) => {
   width: max-content;
 }
 
+.nowrap {
+  white-space: nowrap;
+}
+
 .dropdown-button {
   display: block;
   position: relative;
@@ -108,7 +114,7 @@ onClickOutside(dropdownRef, (/*event*/) => {
 
 .dropdown-content {
   position: relative;
-  max-width: 600px;
+  max-width: 455px; /* Allows for 50 characters */
   margin: 0.2rem;
   padding: 0.2rem;
   border-radius: 0.3rem;
