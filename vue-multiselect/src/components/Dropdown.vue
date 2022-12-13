@@ -3,7 +3,7 @@
     <Button class="dropdown-button" @click="storeDropdown.toggleDropdown">{{ buttonText }}</Button>
 
     <div class="dropdown-content" id="dropdown-div" v-if="storeDropdown.show">
-      <input type="text" placeholder="Search" v-model="storeDropdown.input" class="search-text list-item" v-autofocus />
+      <input v-if="props.useSearch" type="text" placeholder="Search" v-model="storeDropdown.input" class="search-text list-item" v-autofocus />
       <Button @click="clearAll" class="clear-button">Clear All</Button>
       <Button @click="closeButton" class="close-button">Close</Button>
 
@@ -33,6 +33,13 @@ import { vAutofocus } from "@/directives/vAutofocus";
 import Button from "@/components/Button.vue";
 
 onMounted(() => {});
+
+const props = defineProps({
+  useSearch: {
+    type: Boolean,
+    default: true,
+  },
+});
 
 // Store
 const storeDropdown = useStoreDropdown();
