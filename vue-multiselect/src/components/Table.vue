@@ -166,6 +166,7 @@ thead tr {
 
 thead th {
   text-align: center;
+  font-weight: 500;
   padding: 0.1rem 0.2rem;
   border-left: 1px solid #ccc;
 }
