@@ -26,6 +26,7 @@ const columns = reactive([
 
 onMounted(() => {
   drawTable();
+  addColumnHover(document.querySelector("table"));
 });
 
 const drawTable = () => {
@@ -149,6 +150,51 @@ const createTableRow = (rowNum) => {
 
   return row;
 };
+
+const addColumnHover = (table) => {
+  var HOVER_CLASS = "hovered";
+  var hovered;
+
+  table.addEventListener(
+    "mouseover",
+    function (e) {
+      if (e.target.tagName.toLowerCase() == "td") {
+        var index = e.target.cellIndex;
+
+        hovered &&
+          hovered.forEach(function (cell) {
+            cell.classList.remove(HOVER_CLASS);
+          });
+
+        hovered = Array.prototype.map.call(table.rows, function (row) {
+          var i = index;
+          while (!cell && i >= 0) {
+            var cell = row.cells[i];
+            i -= 1;
+          }
+          return cell;
+        });
+
+        hovered.forEach(function (cell) {
+          cell.classList.add(HOVER_CLASS);
+        });
+      }
+    },
+    true
+  );
+
+  table.addEventListener(
+    "mouseout",
+    function (e) {
+      hovered &&
+        hovered.forEach(function (cell) {
+          cell.classList.remove(HOVER_CLASS);
+        });
+      hovered = null;
+    },
+    true
+  );
+};
 </script>
 
 <style>
@@ -178,7 +224,7 @@ tbody tr:nth-child(even) {
 }
 
 tbody tr:hover {
-  background-color: #ccc;
+  background-color: lightyellow;
 }
 
 th,
@@ -192,13 +238,14 @@ tbody td {
   padding: 0 0.2rem;
 }
 
-tr:nth-child(even) td:first-child::before {
-  background-color: lightgreen;
-}
-
-td:hover::after {
+td.hovered {
   background-color: yellow;
 }
+
+/* td:hover::after,
+th:hover::after {
+  background-color: yellow;
+} */
 
 input {
   width: 25px;
