@@ -155,6 +155,8 @@ const createTableRow = (rowNum) => {
 table {
   /* display: block; */
   border: 2px solid #ccc;
+  /* border-radius: 0.3rem; */
+  overflow: hidden;
 }
 
 thead {
@@ -171,7 +173,12 @@ thead th {
   border-left: 1px solid #ccc;
 }
 
-tbody tr {
+tbody tr:nth-child(even) {
+  background-color: #eee;
+}
+
+tbody tr:hover {
+  background-color: #ccc;
 }
 
 th,
@@ -185,7 +192,12 @@ tbody td {
   padding: 0 0.2rem;
 }
 
-tbody td:last-child {
+tr:nth-child(even) td:first-child::before {
+  background-color: lightgreen;
+}
+
+td:hover::after {
+  background-color: yellow;
 }
 
 input {
