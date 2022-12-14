@@ -152,26 +152,6 @@ const createTableRow = (rowNum) => {
 </script>
 
 <style>
-/* *,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  position: relative;
-  font-weight: normal;
-}
-
-table,
-thead,
-tbody,
-tfoot,
-th,
-td,
-tr {
-  all: unset;
-} */
-
 table {
   /* display: block; */
   border: 2px solid #ccc;
@@ -185,7 +165,9 @@ thead tr {
 }
 
 thead th {
-  border: 1px solid #ccc;
+  text-align: center;
+  padding: 0.1rem 0.2rem;
+  border-left: 1px solid #ccc;
 }
 
 tbody tr {
@@ -197,8 +179,12 @@ td {
 }
 
 tbody td {
-  border: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
   padding: 0 0.2rem;
+}
+
+tbody td:last-child {
 }
 
 input {
