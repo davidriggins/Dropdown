@@ -197,7 +197,7 @@ const addColumnHover = (table) => {
 };
 </script>
 
-<style>
+<style scoped>
 table {
   /* display: block; */
   border: 2px solid #ccc;
@@ -239,7 +239,7 @@ tbody td {
 }
 
 td.hovered {
-  background-color: yellow;
+  background-color: pink;
 }
 
 /* td:hover::after,

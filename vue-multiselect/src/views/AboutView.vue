@@ -11,7 +11,7 @@
 import { reactive, ref } from "vue";
 import Table2 from "@/components/Table2.vue";
 
-const fields = ref(["Session ID", "Publish Time", "ArcGIS", "Build", "Product", "OS Version"]);
+const fields = ref(["checkbox", "Session ID", "Publish Time", "ArcGIS", "Build", "Product", "OS Version"]);
 
 const data = reactive([
   { "Session ID": 23, "Publish Time": "12/31/21 05:31 PM", ArcGIS: "11.1", Build: "41238", Product: "Server", "OS Version": "Win10(1809)" },

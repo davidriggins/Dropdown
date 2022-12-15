@@ -1,7 +1,7 @@
 <template>
   <div>
-    <Table2></Table2>
-    <!-- <Table></Table> -->
+    <!-- <Table2></Table2> -->
+    <Table></Table>
     <!-- <Dropdown></Dropdown> -->
     <!-- <button @click="openModal">Show Modal</button> -->
     <!-- <DropdownModal v-if="showModal" @closeModal="closeModal"></DropdownModal> -->
