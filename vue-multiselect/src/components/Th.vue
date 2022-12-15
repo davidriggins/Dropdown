@@ -1,12 +1,10 @@
 <template>
-  <th v-if="isCheckboxField()"><input type="checkbox" class="qam-checkbox" /></th>
-  <!-- <th>{{ props.field }}</th> -->
-  <th v-else>{{ props.field }}</th>
+  <th v-if="isCheckboxField()" :class="generateClassName()" class="qam_th"><input type="checkbox" class="qam-checkbox" /></th>
+  <th v-else :class="generateClassName()" class="qam_th">{{ props.field }}</th>
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-import { sortBy } from "lodash";
+import { onMounted } from "vue";
 
 onMounted(() => {
   console.log(props.field);
@@ -16,20 +14,23 @@ const props = defineProps({
   field: {
     type: String,
   },
+  index: {
+    type: Number,
+  },
 });
 
 const isCheckboxField = () => {
-  if (props.field == "checkbox") {
+  if (props.field == "Checkbox") {
     console.log("True");
     return true;
   }
   console.log("false");
   return false;
 };
+
+const generateClassName = () => {
+  return "qam-th-" + props.index;
+};
 </script>
 
-<style scoped>
-div {
-  display: inline-block;
-}
-</style>
+<style scoped></style>

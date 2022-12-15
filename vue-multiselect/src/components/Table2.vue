@@ -1,12 +1,13 @@
 <template>
   <table id="tableComponent">
     <thead>
-      <Th v-for="field in fields" :key="field" :field="field"></Th>
+      <Th v-for="(field, index) in fields" :key="field" :field="field" :index="index"></Th>
       <!-- <th v-for="field in fields" :key="field" @click="sortTable(field)">{{ field }}</th> -->
     </thead>
     <tbody>
-      <tr v-for="item in data" :key="item">
-        <td v-for="field in fields" :key="field">{{ item[field] }}</td>
+      <tr v-for="(item, index) in data" :key="item" class="qam-tr" :class="generateClassName(index)">
+        <!-- <td v-for="field in fields" :key="field">{{ item[field] }}</td> -->
+        <Td v-for="(field, index) in fields" :key="field" :index="index" :cell="item[field]"></Td>
       </tr>
     </tbody>
   </table>
@@ -16,6 +17,7 @@
 import { ref, onMounted } from "vue";
 import { sortBy } from "lodash";
 import Th from "@/components/Th.vue";
+import Td from "@/components/Td.vue";
 
 onMounted(() => {});
 
@@ -43,6 +45,10 @@ const sortTable = (col) => {
   sort.value = true;
   updatedList.value = sortBy(props.data, col);
   console.log("UpdatedList: ", updatedList.value);
+};
+
+const generateClassName = (index) => {
+  return "qam-tr-" + index;
 };
 </script>
 
