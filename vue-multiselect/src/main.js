@@ -1,5 +1,6 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
+import { sortBy } from "lodash";
 
 import App from "./App.vue";
 import router from "./router";

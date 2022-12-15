@@ -1,6 +1,7 @@
 <template>
   <div>
-    <Table></Table>
+    <Table2></Table2>
+    <!-- <Table></Table> -->
     <!-- <Dropdown></Dropdown> -->
     <!-- <button @click="openModal">Show Modal</button> -->
     <!-- <DropdownModal v-if="showModal" @closeModal="closeModal"></DropdownModal> -->
@@ -11,6 +12,7 @@
 // import { ref } from "vue";
 import Dropdown from "../components/Dropdown.vue";
 import Table from "@/components/Table.vue";
+import Table2 from "@/components/Table2.vue";
 // import DropdownModal from "../components/modals/DropdownModal.vue";
 
 // const showModal = ref(false);
