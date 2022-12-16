@@ -56,11 +56,18 @@ export const useStoreTable = defineStore("storeTable", {
     },
 
     sortTable3(field, event) {
+      var iElement;
       var direction = "asc";
 
-      const element = event.target;
+      var element = event.target;
 
-      var iElement = element.querySelector("i");
+      if (element.nodeName == "I") {
+        iElement = element;
+        element = element.parentNode;
+      } else {
+        iElement = element.querySelector("i");
+      }
+
       if (iElement) {
         if (iElement.className.includes("down")) {
           iElement.remove();
@@ -80,7 +87,7 @@ export const useStoreTable = defineStore("storeTable", {
           direction = "asc";
         }
       } else {
-        var parent = element.parentNode;
+        let parent = element.parentNode;
         if (parent.nodeName == "THEAD") {
           var children = document.getElementsByTagName("th");
           for (var i = 0; i < children.length; i++) {
