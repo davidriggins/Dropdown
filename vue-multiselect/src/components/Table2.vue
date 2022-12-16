@@ -1,13 +1,13 @@
 <template>
-  <table id="tableComponent">
+  <table id="tableComponent" class="qam-table">
     <thead>
-      <Th v-for="(field, index) in fields" :key="field" :field="field" :index="index"></Th>
+      <ThElement v-for="(field, index) in fields" :key="field" :field="field" :index="index"></ThElement>
       <!-- <th v-for="field in fields" :key="field" @click="sortTable(field)">{{ field }}</th> -->
     </thead>
     <tbody>
       <tr v-for="(item, index) in data" :key="item" class="qam-tr" :class="generateClassName(index)">
         <!-- <td v-for="field in fields" :key="field">{{ item[field] }}</td> -->
-        <Td v-for="(field, index) in fields" :key="field" :index="index" :cell="item[field]"></Td>
+        <TdElement v-for="(field, index) in fields" :key="field" :index="index" :cell="item[field]"></TdElement>
       </tr>
     </tbody>
   </table>
@@ -17,8 +17,8 @@
 import { ref, onMounted } from "vue";
 import { sortBy } from "lodash";
 import { useStoreTable } from "@/stores/storeTable";
-import Th from "@/components/Th.vue";
-import Td from "@/components/Td.vue";
+import ThElement from "@/components/ThElement.vue";
+import TdElement from "@/components/TdElement.vue";
 
 // Store
 const storeTable = useStoreTable();
@@ -57,8 +57,9 @@ const generateClassName = (index) => {
 </script>
 
 <style scoped>
+@import "@/assets/styles/table2.css";
+
 table {
-  /* display: block; */
   border: 2px solid #ccc;
   overflow: hidden;
 }
@@ -68,7 +69,7 @@ thead {
 
 thead th {
   text-align: center;
-  font-weight: 500;
+  font-weight: 600;
   padding: 0.1rem 0.2rem;
   border-left: 2px solid #ccc;
   border-bottom: 2px solid #ccc;

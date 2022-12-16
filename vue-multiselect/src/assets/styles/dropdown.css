@@ -1,4 +1,4 @@
-:root {
+/* :root {
   --c-white: #ffffff;
   --c-white-soft: #f8f8f8;
   --c-white-mute: #f2f2f2;
@@ -12,4 +12,134 @@
   padding: 0;
   position: relative;
   font-weight: normal;
+} */
+
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
 }
+
+.outer-div {
+  width: max-content;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.dropdown-button {
+  display: block;
+  position: relative;
+  margin: 0.2rem;
+  border: 1px solid #ccc;
+  /* box-shadow: 1px 2px 7px 1px; */
+
+  border-radius: 0.3rem;
+  /* font-size: 12px; */
+  z-index: 1;
+
+  /* transition: background-color 0.5s; */
+}
+
+/* .dropdown-button:hover {
+  cursor: pointer;
+  background-color: #ccc;
+} */
+
+.dropdown-content {
+  position: relative;
+  max-width: 455px; /* Allows for 50 characters */
+  margin: 0.2rem;
+  padding: 0.2rem;
+  border-radius: 0.3rem;
+  display: inline-block;
+  width: max-content;
+  border: 1px solid #ccc;
+  /* box-sizing: border-box; */
+  /* box-shadow: 1px 2px 7px 1px; */
+  /* background-color: hsla(0, 0%, 100%, 0); */
+  background-color: #fbfbfb;
+}
+
+.search-text {
+  position: relative;
+  display: block;
+  margin: 0.3rem 0;
+  border: 1px solid #ccc;
+  border-radius: 0.3rem;
+  min-width: 50px;
+}
+
+.select-all {
+  position: relative;
+  display: block;
+  margin: 0.3rem 0;
+  padding: 0 5rem;
+  /* border: 1px solid #2b2d42; */
+  border: 1px solid #ccc;
+  border-radius: 0.3rem;
+  float: left;
+  z-index: 1;
+}
+
+.select-all-cb {
+  /* margin-right: 0.1rem; */
+}
+
+.clear-button {
+  margin: 0.2rem;
+  font-size: 12px;
+  float: left;
+}
+
+.close-button {
+  margin: 0.2rem;
+  font-size: 12px;
+  float: right;
+}
+.dropdown-list {
+  position: relative;
+  display: block;
+  float: left;
+  padding: 0;
+
+  width: 100%;
+
+  /* Scrolling in dropdown */
+  max-height: 30rem; /* Maximum height of viewable content */
+  overflow: hidden; /* Hides the overflow content */
+  overflow-y: auto; /* Sets y scroll bars */
+
+  border: 1px solid #ccc;
+  border-radius: 0.3rem;
+  /* width: max-content; */ /* Sets the width to the size of content */
+  /* background-color: hsla(0, 0%, 100%, 0); */
+}
+
+.list-item {
+  position: relative;
+  display: block;
+  padding: 0 0.3rem;
+  width: 100%;
+  background-color: white;
+}
+
+.list-item:hover,
+.list-item:focus {
+  cursor: pointer;
+  background-color: #f0f0f0;
+}
+
+.list-item-cb {
+  margin-right: 0.3rem;
+}
+/* .button-click-enter-active,
+.button-click-leave-active {
+  transition: opacity 5s ease-in-out;
+}
+
+.button-click-enter-from,
+.button-click-leave-to {
+  opacity: 0;
+} */

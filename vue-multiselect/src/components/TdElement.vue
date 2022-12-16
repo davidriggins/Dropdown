@@ -34,4 +34,6 @@ const generateClassName = () => {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+@import "@/assets/styles/table2.css";
+</style>

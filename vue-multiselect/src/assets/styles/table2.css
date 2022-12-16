@@ -1,0 +1,21 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  font-weight: normal;
+}
+
+.qam-table {
+  border: 2px solid #ccc;
+}
+
+.qam-table .qam-thead .qam-th {
+  font-weight: 1500;
+}
+
+.qam-td {
+  padding: 0 0.3rem;
+}
