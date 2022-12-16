@@ -43,7 +43,6 @@ export const useStoreDropdown = defineStore("storeDropdown", {
     toggleSelectAll(e) {
       this.checkboxesChecked.length = 0;
       var checkboxes = document.getElementsByName("checkbox-item");
-      this.checkboxesChecked.length = 0;
 
       for (var i = 0; i < checkboxes.length; i++) {
         if (checkboxes[i] != e.target) {

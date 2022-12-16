@@ -1,13 +1,17 @@
 <template>
-  <th v-if="isCheckboxField()" :class="generateClassName()" class="qam_th"><input type="checkbox" class="qam-checkbox" /></th>
+  <th v-if="isCheckboxField()" :class="generateClassName()" class="qam_th"><input type="checkbox" @click="storeTable.toggleCheckboxes($event)" class="qam-checkbox-toggle" /></th>
   <th v-else :class="generateClassName()" class="qam_th">{{ props.field }}</th>
 </template>
 
 <script setup>
 import { onMounted } from "vue";
+import { useStoreTable } from "@/stores/storeTable";
+
+// Store
+const storeTable = useStoreTable();
 
 onMounted(() => {
-  console.log(props.field);
+  // console.log(props.field);
 });
 
 const props = defineProps({
@@ -21,10 +25,8 @@ const props = defineProps({
 
 const isCheckboxField = () => {
   if (props.field == "Checkbox") {
-    console.log("True");
     return true;
   }
-  console.log("false");
   return false;
 };
 

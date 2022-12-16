@@ -16,8 +16,12 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { sortBy } from "lodash";
+import { useStoreTable } from "@/stores/storeTable";
 import Th from "@/components/Th.vue";
 import Td from "@/components/Td.vue";
+
+// Store
+const storeTable = useStoreTable();
 
 onMounted(() => {});
 

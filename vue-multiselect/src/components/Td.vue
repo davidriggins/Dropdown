@@ -1,10 +1,14 @@
 <template>
-  <td v-if="isCheckboxField()" :class="generateClassName()" class="qam-td"><input type="checkbox" class="qam-checkbox" /></td>
+  <td v-if="isCheckboxField()" :class="generateClassName()" class="qam-td"><input type="checkbox" @click="storeTable.toggleCheckbox()" class="qam-checkbox" /></td>
   <td v-else :class="generateClassName()" class="qam-td">{{ props.cell }}</td>
 </template>
 
 <script setup>
 import { onMounted } from "vue";
+import { useStoreTable } from "@/stores/storeTable";
+
+// Store
+const storeTable = useStoreTable();
 
 onMounted(() => {});
 
