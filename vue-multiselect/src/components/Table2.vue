@@ -1,13 +1,13 @@
 <template>
   <table id="tableComponent" class="qam-table">
     <thead>
-      <ThElement v-for="(field, index) in fields" :key="field" :field="field" :index="index"></ThElement>
+      <ThElement v-for="(field, index) in storeTable.fields" :key="field" :field="field" :index="index"></ThElement>
       <!-- <th v-for="field in fields" :key="field" @click="sortTable(field)">{{ field }}</th> -->
     </thead>
     <tbody>
-      <tr v-for="(item, index) in data" :key="item" class="qam-tr" :class="generateClassName(index)">
+      <tr v-for="(item, index) in storeTable.data" :key="item" class="qam-tr" :class="generateClassName(index)">
         <!-- <td v-for="field in fields" :key="field">{{ item[field] }}</td> -->
-        <TdElement v-for="(field, index) in fields" :key="field" :index="index" :cell="item[field]"></TdElement>
+        <TdElement v-for="(field, index) in storeTable.fields" :key="field" :index="index" :cell="item[field]"></TdElement>
       </tr>
     </tbody>
   </table>
