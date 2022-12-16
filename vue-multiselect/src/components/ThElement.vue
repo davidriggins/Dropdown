@@ -1,6 +1,6 @@
 <template>
   <th v-if="isCheckboxField()" :class="generateClassName()" class="qam_th"><input type="checkbox" @click="storeTable.toggleCheckboxes($event)" class="qam-checkbox-toggle" /></th>
-  <th v-else :class="generateClassName()" class="qam_th" @click="storeTable.sortTable3(props.field, $event)">{{ props.field }}</th>
+  <th v-else :class="generateClassName()" class="qam_th" @click="storeTable.sortTable(props.field, $event)">{{ props.field }}</th>
 </template>
 
 <script setup>

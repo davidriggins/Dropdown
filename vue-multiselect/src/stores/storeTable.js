@@ -55,12 +55,17 @@ export const useStoreTable = defineStore("storeTable", {
       }
     },
 
-    sortTable3(field, event) {
+    sortTable(field, event) {
       var iElement;
       var direction = "asc";
 
+      // Get the event target element
       var element = event.target;
 
+      // If the element is an "I" we want the parent element ("TH").
+      // This will be the case if someone clicked on the sort icon as
+      // opposed to the TH. If so, the icon is a child of the TH.
+      // We need the parent element TH for later processing.
       if (element.nodeName == "I") {
         iElement = element;
         element = element.parentNode;
@@ -68,6 +73,9 @@ export const useStoreTable = defineStore("storeTable", {
         iElement = element.querySelector("i");
       }
 
+      // If there is an I element, determine if it is the down icon
+      // or the up icon. Remove the existing icon and add the
+      // appropriate one. Also, assign the direction of sort.
       if (iElement) {
         if (iElement.className.includes("down")) {
           iElement.remove();
@@ -86,6 +94,10 @@ export const useStoreTable = defineStore("storeTable", {
           element.appendChild(newEl);
           direction = "asc";
         }
+
+        // Otherwise, there is no existing icon on this TH. We want to
+        // remove any existing icon from the TH's.  Then, we add a new
+        // icon to the TH. Default first click is ascending order sort.
       } else {
         let parent = element.parentNode;
         if (parent.nodeName == "THEAD") {
@@ -104,45 +116,12 @@ export const useStoreTable = defineStore("storeTable", {
         element.appendChild(newEl);
       }
 
+      // Use Lodash utility to sort.
       this.data = orderBy(this.data, field, direction);
-      // console.log(updatedList);
     },
-
-    // sortTable2() {
-    //   document.querySelectorAll("th").forEach((th) =>
-    //     th.addEventListener("click", () => {
-    //       const table = th.closest("table");
-    //       const tbody = table.querySelector("tbody");
-    //       Array.from(tbody.querySelectorAll("tr"))
-    //         .sort(comparer(Array.from(th.parentNode.children).indexOf(th), (this.asc = !this.asc)))
-    //         .forEach((tr) => tbody.appendChild(tr));
-    //     })
-    //   );
-    // },
 
     getCellValue(tr, idx) {
       return tr.children[idx].innerText || tr.children[idx].textContent;
-    },
-
-    // Returns a function responsible for sorting a specific column index
-    // (idx = columnIndex, asc = ascending order?).
-    comparer(idx, asc) {
-      // This is used by the array.sort() function...
-      return function (a, b) {
-        // This is a transient function, that is called straight away.
-        // It allows passing in different order of args, based on
-        // the ascending/descending order.
-        return (function (v1, v2) {
-          // sort based on a numeric or localeCompare, based on type...
-          return v1 !== "" && v2 !== "" && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2);
-        })(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
-      };
-    },
-
-    sortTable(data, col) {
-      console.log("Sorting column: ", col);
-      var updatedList = sortBy(data, col);
-      console.log("UpdatedList: ", updatedList.value);
     },
   },
   getters: {},
