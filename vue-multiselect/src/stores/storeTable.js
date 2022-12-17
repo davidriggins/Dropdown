@@ -15,6 +15,9 @@ export const useStoreTable = defineStore("storeTable", {
       ],
       checkboxesChecked: [],
       sortField: "",
+      mouseIsDown: false,
+      mouseIsIn: false,
+      currentTH: "",
     };
   },
 
@@ -122,6 +125,34 @@ export const useStoreTable = defineStore("storeTable", {
 
     getCellValue(tr, idx) {
       return tr.children[idx].innerText || tr.children[idx].textContent;
+    },
+
+    mouseDown(e) {
+      this.mouseIsDown = true;
+      console.log("Mouse is down");
+    },
+
+    mouseUp(e) {
+      this.mouseIsDown = false;
+      console.log("Mouse is up");
+    },
+
+    mouseEnter(e) {
+      this.mouseIsIn = true;
+      this.currentTH = e.target.textContent;
+      console.log("Mouse is in");
+    },
+
+    mouseLeave(e) {
+      this.mouseIsIn = false;
+      this.currentTH = "";
+      console.log("Mouse is out");
+    },
+
+    mouseMoving(e) {
+      if (this.mouseIsIn && this.mouseIsDown && this.currentTH == e.target.textContent) {
+        console.log("Yeah");
+      }
     },
   },
   getters: {},
