@@ -15,11 +15,6 @@ export const useStoreTable = defineStore("storeTable", {
       ],
       checkboxesChecked: [],
       sortField: "",
-      mouseIsDown: false,
-      mouseIsIn: false,
-      mouseIsMoving: false,
-      currentTH: "",
-      mouseIsStillInside: false,
     };
   },
 
@@ -127,46 +122,6 @@ export const useStoreTable = defineStore("storeTable", {
 
     getCellValue(tr, idx) {
       return tr.children[idx].innerText || tr.children[idx].textContent;
-    },
-
-    mouseDown(e) {
-      this.mouseIsDown = true;
-      if (this.mouseIsIn) {
-        this.mouseIsStillInside = true;
-      }
-      console.log("Mouse is down");
-    },
-
-    mouseUp(e) {
-      this.mouseIsDown = false;
-      this.mouseIsStillInside = false;
-      console.log("Mouse is up");
-    },
-
-    mouseEnter(e) {
-      this.mouseIsIn = true;
-      this.currentTH = e.target.textContent;
-      console.log("Mouse is in");
-    },
-
-    mouseLeave(e) {
-      this.mouseIsIn = false;
-      this.currentTH = "";
-      this.mouseIsStillInside = false;
-      console.log("Mouse is out");
-    },
-
-    mouseMoving(e) {
-      this.mouseIsMoving = true;
-      if (this.mouseIsDown) {
-        if (this.mouseIsIn && this.currentTH == e.target.textContent) {
-          if (this.mouseIsStillInside) {
-            console.log("Yea");
-            console.log(e.target.getBoundingClientRect());
-            this.mouseIsStillInside = false;
-          }
-        }
-      }
     },
   },
   getters: {},

@@ -1,18 +1,6 @@
 <template>
   <th v-if="isCheckboxField()" :class="generateClassName()" class="qam_th"><input type="checkbox" @click="storeTable.toggleCheckboxes($event)" class="qam-checkbox-toggle" /></th>
-  <th
-    v-else
-    :class="generateClassName()"
-    class="qam_th"
-    @mouseup="storeTable.mouseUp($event)"
-    @mousedown="storeTable.mouseDown($event)"
-    @mouseenter="storeTable.mouseEnter($event)"
-    @mouseleave="storeTable.mouseLeave($event)"
-    @mousemove="storeTable.mouseMoving($event)"
-    @click="storeTable.sortTable(props.field, $event)"
-  >
-    {{ props.field }}
-  </th>
+  <th v-else :class="generateClassName()" class="qam_th" @click="storeTable.sortTable(props.field, $event)">{{ props.field }}</th>
 </template>
 
 <script setup>
