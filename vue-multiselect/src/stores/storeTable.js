@@ -17,7 +17,9 @@ export const useStoreTable = defineStore("storeTable", {
       sortField: "",
       mouseIsDown: false,
       mouseIsIn: false,
+      mouseIsMoving: false,
       currentTH: "",
+      mouseIsStillInside: false,
     };
   },
 
@@ -129,11 +131,15 @@ export const useStoreTable = defineStore("storeTable", {
 
     mouseDown(e) {
       this.mouseIsDown = true;
+      if (this.mouseIsIn) {
+        this.mouseIsStillInside = true;
+      }
       console.log("Mouse is down");
     },
 
     mouseUp(e) {
       this.mouseIsDown = false;
+      this.mouseIsStillInside = false;
       console.log("Mouse is up");
     },
 
@@ -146,12 +152,20 @@ export const useStoreTable = defineStore("storeTable", {
     mouseLeave(e) {
       this.mouseIsIn = false;
       this.currentTH = "";
+      this.mouseIsStillInside = false;
       console.log("Mouse is out");
     },
 
     mouseMoving(e) {
-      if (this.mouseIsIn && this.mouseIsDown && this.currentTH == e.target.textContent) {
-        console.log("Yeah");
+      this.mouseIsMoving = true;
+      if (this.mouseIsDown) {
+        if (this.mouseIsIn && this.currentTH == e.target.textContent) {
+          if (this.mouseIsStillInside) {
+            console.log("Yea");
+            console.log(e.target.getBoundingClientRect());
+            this.mouseIsStillInside = false;
+          }
+        }
       }
     },
   },
