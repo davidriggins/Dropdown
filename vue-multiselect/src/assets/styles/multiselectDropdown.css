@@ -1,0 +1,111 @@
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.qam-outer-div {
+  width: max-content;
+}
+
+.qam-nowrap {
+  white-space: nowrap;
+}
+
+.qam-dropdown-button {
+  display: block;
+  position: relative;
+  margin: 0.2rem;
+  border: 1px solid #ccc;
+  border-radius: 0.3rem;
+  z-index: 1;
+}
+
+.qam-dropdown-content {
+  position: relative;
+  max-width: 455px; /* Allows for 50 characters */
+  margin: 0.2rem;
+  padding: 0.2rem;
+  border-radius: 0.3rem;
+  display: inline-block;
+  width: max-content;
+  border: 1px solid #ccc;
+  background-color: #fbfbfb;
+}
+
+.qam-search-text {
+  position: relative;
+  display: block;
+  margin: 0.3rem 0;
+  border: 1px solid #ccc;
+  border-radius: 0.3rem;
+  min-width: 50px;
+}
+
+.qam-search-text:focus {
+  background-color: #fff;
+}
+
+.qam-clear-button {
+  margin: 0.2rem;
+  font-size: 12px;
+  float: left;
+}
+
+.qam-close-button {
+  margin: 0.2rem;
+  font-size: 12px;
+  float: right;
+}
+
+.qam-select-all {
+  position: relative;
+  display: block;
+  margin: 0.3rem 0;
+  padding: 0 5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.3rem;
+  float: left;
+  z-index: 1;
+}
+
+.qam-select-all-cb {
+  /* margin-right: 0.1rem; */
+}
+
+.qam-dropdown-list {
+  position: relative;
+  display: block;
+  float: left;
+  padding: 0;
+
+  width: 100%;
+
+  /* Scrolling in dropdown */
+  max-height: 30rem; /* Maximum height of viewable content */
+  overflow: hidden; /* Hides the overflow content */
+  overflow-y: auto; /* Sets y scroll bars */
+
+  border: 1px solid #ccc;
+  border-radius: 0.3rem;
+  /* width: max-content; */ /* Sets the width to the size of content */
+  /* background-color: hsla(0, 0%, 100%, 0); */
+}
+
+.qam-list-item {
+  position: relative;
+  display: block;
+  padding: 0 0.3rem;
+  width: 100%;
+  background-color: white;
+}
+
+.qam-list-item:hover,
+.qam-list-item:focus {
+  cursor: pointer;
+  background-color: #f0f0f0;
+}
+
+.qam-list-item-cb {
+  margin-right: 0.3rem;
+}
