@@ -1,5 +1,5 @@
 <template>
-  <div class="qam-simple-dropdown">
+  <div class="qam-simple-dropdown" ref="dropdownRef">
     <Button @click="toggleDropdown" class="qam-simple-dropdown-button">
       {{ buttonLabel + "  ⮟" }}
     </Button>
@@ -11,6 +11,8 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
+import { onClickOutside } from "@vueuse/core";
+
 import Button from "@/components/Button.vue";
 
 const props = defineProps({
@@ -52,7 +54,7 @@ const toggleDropdown = () => {
 };
 
 const itemWasSelected = (item) => {
-  show.value = !show.value;
+  show.value = false;
   itemSelected.value = item;
 
   if (props.keepSelectedAsText) {
@@ -60,6 +62,12 @@ const itemWasSelected = (item) => {
   }
   console.log("Item selected: ", item);
 };
+
+// Click outside
+const dropdownRef = ref(null);
+onClickOutside(dropdownRef, (/*event*/) => {
+  show.value = false;
+});
 </script>
 
 <style scoped>
