@@ -52,17 +52,25 @@ onMounted(() => {});
 // Properties
 // ==================================================================
 const props = defineProps({
+  // Array of Strings to be displayed in the dropdown list
   items: {
     type: Array,
   },
+
+  // Text to be displayed on the dropdown button
   buttonText: {
     type: String,
     default: "Select Me",
   },
+
+  // The maximum number of items to be visible in the dropdown.
+  // The dropdown is scrollable
   maxItemsShown: {
     type: Number,
     default: 25,
   },
+
+  // Boolean used to show or not show the Search input
   useSearch: {
     type: Boolean,
     default: true,
