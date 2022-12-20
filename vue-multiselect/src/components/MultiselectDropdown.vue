@@ -1,3 +1,10 @@
+<!--
+  ===================================================================
+  ===================================================================
+  Template Section
+  ===================================================================
+  ===================================================================
+-->
 <template>
   <div class="qam-outer-div" ref="qam_dropdownRef">
     <Button class="qam-dropdown-button" @click="dropdownButtonClicked">{{ buttonText }}</Button>
@@ -22,13 +29,28 @@
 </template>
 
 <script setup>
+// ==================================================================
+// ==================================================================
+// Script Section
+// ==================================================================
+// ==================================================================
+
+// ==================================================================
+// Imports
+// ==================================================================
 import { onMounted, ref } from "vue";
 import { onClickOutside } from "@vueuse/core";
 import { vAutofocus } from "@/directives/vAutofocus";
 import Button from "@/components/Button.vue";
 
+// ==================================================================
+// Lifecycle hooks
+// ==================================================================
 onMounted(() => {});
 
+// ==================================================================
+// Properties
+// ==================================================================
 const props = defineProps({
   items: {
     type: Array,
@@ -47,11 +69,35 @@ const props = defineProps({
   },
 });
 
+// ==================================================================
+// Reference variables
+// ==================================================================
 const show = ref(false);
 const input = ref("");
 const selectAllText = ref("Select All");
 const checkboxesChecked = ref([]);
 
+// ==================================================================
+// Functions
+// ==================================================================
+
+// Dropdown button clicked
+const dropdownButtonClicked = () => {
+  show.value = !show.value;
+};
+
+// Click outside of dropdown area
+const qam_dropdownRef = ref(null);
+onClickOutside(qam_dropdownRef, (/*event*/) => {
+  const el = document.getElementById("qam-dropdown-div");
+
+  if (el) {
+    clear();
+  }
+  show.value = false;
+});
+
+// Create "filtered" list of items from search input
 const filteredList = () => {
   if (props.items.filter((option) => option.toLowerCase().includes(input.value.toLowerCase())).length > props.maxItemsShown) {
     return [];
@@ -59,10 +105,13 @@ const filteredList = () => {
 
   return props.items.filter((option) => option.toLowerCase().includes(input.value.toLowerCase()));
 };
+
+// Clear all button click.
 const clearAll = () => {
   clear();
 };
 
+// Clear contents
 const clear = () => {
   var checkboxes = document.getElementsByName("qam-checkbox-item");
   var selectAll = document.getElementsByName("qam-select-all");
@@ -83,6 +132,7 @@ const clear = () => {
   selectAllText.value = "Select All";
 };
 
+// Close button clicked
 const closeButton = () => {
   console.log("Close button checked");
   console.log(checkboxesChecked.value);
@@ -90,6 +140,7 @@ const closeButton = () => {
   show.value = false;
 };
 
+// Select/Deselect All button clicked
 const toggleSelectAll = (e) => {
   checkboxesChecked.value.length = 0;
   var checkboxes = document.getElementsByName("qam-checkbox-item");
@@ -111,6 +162,7 @@ const toggleSelectAll = (e) => {
   }
 };
 
+// A Checkbox was toggled
 const toggleCheckbox = () => {
   var checkboxes = document.getElementsByName("qam-checkbox-item");
   var selectAll = document.getElementsByName("qam-select-all");
@@ -135,32 +187,13 @@ const toggleCheckbox = () => {
     selectAllText.value = "Select All";
   }
 };
-
-// Click outside
-const qam_dropdownRef = ref(null);
-onClickOutside(qam_dropdownRef, (/*event*/) => {
-  const el = document.getElementById("qam-dropdown-div");
-
-  if (el) {
-    clear();
-  }
-  show.value = false;
-});
-
-// const filteredList = () => {
-//   console.log(props.items);
-//   if (props.items.filter((option) => option.toLowerCase().includes(input.value.toLowerCase())).length > props.maxItemsShown) {
-//     return [];
-//   }
-
-//   return this.items.filter((option) => option.toLowerCase().includes(this.input.toLowerCase()));
-// };
-
-const dropdownButtonClicked = () => {
-  show.value = !show.value;
-};
 </script>
 
 <style scoped>
+/* ==================================================================
+   ==================================================================
+   Style Section
+   ==================================================================
+   ==================================================================*/
 @import "@/assets/styles/multiselectDropdown.css";
 </style>
