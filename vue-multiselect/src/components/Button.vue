@@ -45,7 +45,7 @@ button:focus {
 }
 
 button:active {
-  border: 2px double #777;
+  border: 2px double #0000ff;
 }
 
 /* .button-click-enter-active,

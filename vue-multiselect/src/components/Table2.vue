@@ -11,6 +11,7 @@
       </tr>
     </tbody>
   </table>
+  <TablePagination></TablePagination>
 </template>
 
 <script setup>
@@ -19,6 +20,7 @@ import { sortBy } from "lodash";
 import { useStoreTable } from "@/stores/storeTable";
 import ThElement from "@/components/ThElement.vue";
 import TdElement from "@/components/TdElement.vue";
+import TablePagination from "@//components/TablePagination.vue";
 
 // Store
 const storeTable = useStoreTable();
@@ -58,6 +60,10 @@ const generateClassName = (index) => {
 
 <style scoped>
 @import "@/assets/styles/table2.css";
+
+div {
+  width: max-content;
+}
 
 table {
   border: 2px solid #ccc;
