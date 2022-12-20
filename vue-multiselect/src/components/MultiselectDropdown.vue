@@ -85,7 +85,7 @@ const clear = () => {
 
 const closeButton = () => {
   console.log("Close button checked");
-  console.log(checkboxesChecked);
+  console.log(checkboxesChecked.value);
   clear();
   show.value = false;
 };
