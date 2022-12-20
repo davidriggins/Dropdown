@@ -3,7 +3,7 @@
     <h1 class="mt-5 fw-bolder text-success">Component Tests</h1> -->
   <div class="mt-5">
     <!-- <Table2></Table2> -->
-    <SimpleDropdown :items="list" :keepSelectedAsText="true"></SimpleDropdown>
+    <SimpleDropdown @handleSelection="handleSelection" :items="list" :keepSelectedAsText="true"></SimpleDropdown>
   </div>
   <!-- </div> -->
 </template>
@@ -15,6 +15,10 @@ import SimpleDropdown from "@/components/SimpleDropdown.vue";
 import { useStoreTable } from "@/stores/storeTable";
 
 const list = ref(["5", "10", "25", "100", "200"]);
+
+const handleSelection = (value) => {
+  console.log(value);
+};
 </script>
 
 <style scoped>

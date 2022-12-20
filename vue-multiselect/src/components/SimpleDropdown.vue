@@ -3,6 +3,7 @@
     <Button @click="toggleDropdown" class="qam-simple-dropdown-button">
       {{ buttonLabel + "  ⮟" }}
     </Button>
+
     <ul v-if="show" class="qam-simple-dropdown-content">
       <li v-for="(item, index) in items" :key="index" @click="itemWasSelected(item)">{{ item }}</li>
     </ul>
@@ -34,16 +35,10 @@ const props = defineProps({
   },
 });
 
-// const slots = useSlots();
-// const slotText = computed(() => {
-//   return slots.default()[0].children;
-// });
-
+const emits = defineEmits(["handleSelection"]);
 const show = ref(false);
 const buttonLabel = ref("");
 const itemSelected = ref("");
-// const list = ref(["5", "10", "25", "100", "200"]);
-// const buttonText = ref("Select");
 
 onMounted(() => {
   buttonLabel.value = props.buttonText;
@@ -60,7 +55,7 @@ const itemWasSelected = (item) => {
   if (props.keepSelectedAsText) {
     buttonLabel.value = item;
   }
-  console.log("Item selected: ", item);
+  emits("handleSelection", item);
 };
 
 // Click outside
