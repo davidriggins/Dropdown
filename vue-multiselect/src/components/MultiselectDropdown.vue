@@ -7,7 +7,7 @@
 -->
 <template>
   <div class="qam-outer-div" ref="qam_dropdownRef">
-    <Button class="qam-dropdown-button" @click="dropdownButtonClicked">{{ buttonText }}</Button>
+    <Button class="qam-dropdown-button" @click="dropdownButtonClicked">{{ buttonText + "  ⮟" }}</Button>
     <div class="qam-dropdown-content" id="qam-dropdown-div" v-if="show">
       <input v-if="props.useSearch" type="text" placeholder="Search" v-model="input" class="qam-search-text qam-list-item" v-autofocus />
       <Button @click="clearAll" class="qam-clear-button">Clear All</Button>
