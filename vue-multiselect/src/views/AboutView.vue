@@ -4,7 +4,8 @@
   <div class="mt-5">
     <!-- <Table2></Table2> -->
     <!-- <SimpleDropdown @handleSelection="handleSelection" :items="list" :keepSelectedAsText="true"></SimpleDropdown> -->
-    <MultiselectDropdown buttonText="Select Me" :items="optionsList"></MultiselectDropdown>
+    <!-- <MultiselectDropdown buttonText="Select Me" :items="optionsList"></MultiselectDropdown> -->
+    <TablePagination></TablePagination>
   </div>
   <!-- </div> -->
 </template>
@@ -14,6 +15,7 @@ import { ref } from "vue";
 import Table2 from "@/components/Table2.vue";
 import SimpleDropdown from "@/components/SimpleDropdown.vue";
 // import { useStoreTable } from "@/stores/storeTable";
+import TablePagination from "../components/TablePagination.vue";
 import MultiselectDropdown from "../components/MultiselectDropdown.vue";
 
 const list = ref(["5", "10", "25", "100", "200"]);

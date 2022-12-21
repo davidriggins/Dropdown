@@ -1,5 +1,5 @@
 <template>
-  <table id="tableComponent" class="qam-table">
+  <table id="qam-tableComponent" class="qam-table">
     <thead>
       <ThElement v-for="(field, index) in storeTable.fields" :key="field" :field="field" :index="index"></ThElement>
       <!-- <th v-for="field in fields" :key="field" @click="sortTable(field)">{{ field }}</th> -->
