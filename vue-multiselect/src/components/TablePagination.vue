@@ -71,6 +71,7 @@ const pageButtonClicked = (page, event) => {
     setActiveButton(page);
   } else {
     setButtonNumbers();
+    setActiveButton(page);
   }
   // centerNumber.value = page;
   numberOfPages.value = Math.ceil(props.totalItems / itemsPerPage.value);
@@ -143,6 +144,13 @@ const setActiveButton = (activeNumber) => {
   var pageButtons = document.getElementsByClassName("qam-page-button");
   for (var j = 0; j < pageButtons.length; j++) {
     console.log("Index: ", j);
+    // if (activeNumber <= 3) {
+    //   console.log("Hello");
+    //   if (pageButtons[j].textContent == activeNumber) {
+    //     console.log("setActiveButton: add class to item = ", j);
+    //     pageButtons[j].classList.add("qam-current");
+    //   }
+    // } else if (j - delta.value >= 0) {
     if (j - delta.value >= 0) {
       if (pageButtons[j].textContent == activeNumber) {
         console.log("setActiveButton: add class to item = ", j - delta.value);
