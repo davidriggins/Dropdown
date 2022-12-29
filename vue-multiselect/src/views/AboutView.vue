@@ -5,7 +5,7 @@
     <!-- <Table2></Table2> -->
     <!-- <SimpleDropdown @handleSelection="handleSelection" :items="list" :keepSelectedAsText="true"></SimpleDropdown> -->
     <!-- <MultiselectDropdown buttonText="Select Me" :items="optionsList"></MultiselectDropdown> -->
-    <TablePagination></TablePagination>
+    <TablePagination :totalPages="240" :perPage="25" :currentPage="currentPage" @pagechanged="onPageChange"></TablePagination>
   </div>
   <!-- </div> -->
 </template>
@@ -46,6 +46,13 @@ const optionsList = ref([
   "Hello23",
   "Hello24",
 ]);
+
+const currentPage = ref(1);
+
+const onPageChange = (page) => {
+  console.log(page);
+  currentPage.value = page;
+};
 
 const handleSelection = (value) => {
   console.log(value);
