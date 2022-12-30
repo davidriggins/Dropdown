@@ -7,9 +7,11 @@
       <li>
         <Button class="qam-prev-next" @click="onClickPreviousPage" :disabled="isInFirstPage">Previous</Button>
       </li>
+
       <li v-for="page in pages" :key="page.name">
         <Button class="qam-page-button" @click="onClickPage(page.name)" :class="{ active: isPageActive(page.name) }" name="qam-page-button" :disabled="page.isDisabled">{{ page.name }}</Button>
       </li>
+
       <li>
         <Button class="qam-prev-next" @click="onClickNextPage" :disabled="isInLastPage">Next</Button>
       </li>
@@ -29,17 +31,22 @@
   </div>
 </template>
 
+<!--======================================================================
+//========================================================================
+// Script
+//========================================================================
+//========================================================================-->
 <script setup>
+// =======================================================================
+// Imports
+// =======================================================================
 import { onMounted, ref, computed } from "vue";
 import Button from "@/components/Button.vue";
 import SimpleDropdown from "@/components/SimpleDropdown.vue";
 
-//===============================================
-//===============================================
-const maxVisibleButtons = ref(5);
-
-//===============================================
-
+// =======================================================================
+// Properties
+// =======================================================================
 const props = defineProps({
   radius: { type: Number, default: 2 },
   totalPages: { type: Number, default: 240 },
@@ -48,10 +55,21 @@ const props = defineProps({
   itemsPerPageOptions: { type: Array, default: () => ["100", "200", "500", "1000"] },
 });
 
-onMounted(() => {
-  maxVisibleButtons.value = props.radius * 2 + 1;
-});
+//========================================================================
+// Reactive Variables
+//========================================================================
+const maxVisibleButtons = ref(5);
 
+//========================================================================
+// Emits
+//========================================================================
+const emits = defineEmits(["pagechanged"]);
+
+//========================================================================
+// Computed
+//========================================================================
+
+// Determine start page
 const startPage = computed(() => {
   // When on the first page
   // if (props.currentPage === 1) {
@@ -82,6 +100,7 @@ const startPage = computed(() => {
   return props.currentPage - props.radius;
 });
 
+// Determine array of page numbers
 const pages = computed(() => {
   const range = [];
 
@@ -95,18 +114,26 @@ const pages = computed(() => {
   return range;
 });
 
+// Are we on the first page?
 const isInFirstPage = computed(() => {
   return props.currentPage === 1;
 });
 
+// Are we on the last page?
 const isInLastPage = computed(() => {
   return props.currentPage === props.totalPages;
 });
 
-const emits = defineEmits(["pagechanged"]);
+// =======================================================================
+// Lifecycle hooks
+// =======================================================================
+onMounted(() => {
+  maxVisibleButtons.value = props.radius * 2 + 1;
+});
 
+// ==================================================================
 // Methods
-
+// ==================================================================
 const isPageActive = (page) => {
   return props.currentPage === page;
 };
@@ -132,6 +159,11 @@ const onClickLastPage = () => {
 };
 </script>
 
+<!--======================================================================
+//========================================================================
+// Styles
+//========================================================================
+//========================================================================-->
 <style scoped>
 div {
   border-radius: 0.3rem;
