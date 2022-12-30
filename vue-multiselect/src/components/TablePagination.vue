@@ -16,8 +16,16 @@
       <li>
         <Button class="qam-first-last" @click="onClickLastPage" :disabled="isInLastPage">🢖🢖</Button>
       </li>
+      <li>
+        <SimpleDropdown
+          class="qam-tp-dropdown"
+          :items="props.itemsPerPageOptions"
+          :selectedItem="props.itemsPerPageOptions[1]"
+          :buttonText="props.itemsPerPageOptions[1]"
+          :keepSelectedAsText="true"
+        ></SimpleDropdown>
+      </li>
     </ul>
-    <SimpleDropdown class="qam-tp-dropdown"></SimpleDropdown>
   </div>
 </template>
 
@@ -37,7 +45,7 @@ const props = defineProps({
   totalPages: { type: Number, default: 240 },
   perPage: { type: Number, default: 100 },
   currentPage: { type: Number, default: 1 },
-  itemsPerPageOptions: { type: Array },
+  itemsPerPageOptions: { type: Array, default: () => ["100", "200", "500", "1000"] },
 });
 
 onMounted(() => {
@@ -88,15 +96,11 @@ const pages = computed(() => {
 });
 
 const isInFirstPage = computed(() => {
-  console.log("In first page");
-  return props.currentPage <= props.radius;
-  // return props.currentPage === 1;
+  return props.currentPage === 1;
 });
 
 const isInLastPage = computed(() => {
-  console.log("In last page");
-  return props.currentPage > props.totalPages - props.radius;
-  // return props.currentPage === props.totalPages;
+  return props.currentPage === props.totalPages;
 });
 
 const emits = defineEmits(["pagechanged"]);
@@ -132,6 +136,7 @@ const onClickLastPage = () => {
 div {
   border-radius: 0.3rem;
   border: 2px solid #ccc;
+  width: max-content;
 }
 
 li {
@@ -166,10 +171,10 @@ Button {
   border: 2px solid #00f;
 }
 
-.qam-prev-next {
-  /* font-size: 1rem; */
-}
-/* .qam-tp-dropdown {
+.qam-tp-dropdown {
   display: inline-block;
-} */
+  margin: 0 0.3rem 0 1rem;
+  /* width: 10rem; */
+  /* width: 3rem; */
+}
 </style>

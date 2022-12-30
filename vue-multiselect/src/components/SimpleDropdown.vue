@@ -18,21 +18,15 @@ import Button from "@/components/Button.vue";
 
 const props = defineProps({
   // The list of items in the dropdown.
-  items: {
-    type: Array,
-  },
+  items: { type: Array },
 
   // The (original) button text you want.
-  buttonText: {
-    type: String,
-    default: "Select",
-  },
+  buttonText: { type: String, default: "Select" },
 
   // Keep the selected value as the button text.
-  keepSelectedAsText: {
-    type: Boolean,
-    default: false,
-  },
+  keepSelectedAsText: { type: Boolean, default: false },
+
+  selectedItem: { type: String },
 });
 
 const emits = defineEmits(["handleSelection"]);
@@ -94,6 +88,8 @@ ul {
   padding: 0;
   /* width: fit-content; */
   width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 0.3rem;
 
   /* Scrolling in dropdown */
   max-height: 30rem; /* Maximum height of viewable content */
@@ -103,12 +99,13 @@ ul {
 }
 
 li {
+  background-color: #fff;
   list-style-type: none;
   margin: 0;
   padding: 0 0.3rem;
   width: 100%;
   display: block;
-  z-index: 1;
+  z-index: 2;
   border: 2px solid #fff;
 }
 
