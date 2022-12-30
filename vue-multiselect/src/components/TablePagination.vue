@@ -174,7 +174,5 @@ Button {
 .qam-tp-dropdown {
   display: inline-block;
   margin: 0 0.3rem 0 1rem;
-  /* width: 10rem; */
-  /* width: 3rem; */
 }
 </style>

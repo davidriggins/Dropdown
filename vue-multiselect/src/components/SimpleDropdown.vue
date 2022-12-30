@@ -72,7 +72,8 @@ onClickOutside(dropdownRef, (/*event*/) => {
 
 Button {
   cursor: pointer;
-  min-width: 50px;
+  /* min-width: 50px; */
+  min-width: 4rem;
 }
 
 div {
