@@ -2,19 +2,19 @@
   <div>
     <ul>
       <li>
-        <Button class="qam-prev-next" @click="onClickFirstPage" :disabled="isInFirstPage">🢔🢔</Button>
+        <Button class="qam-first-last" @click="onClickFirstPage" :disabled="isInFirstPage">🢔🢔</Button>
       </li>
       <li>
-        <Button class="qam-previous" @click="onClickPreviousPage" :disabled="isInFirstPage">Previous</Button>
+        <Button class="qam-prev-next" @click="onClickPreviousPage" :disabled="isInFirstPage">Previous</Button>
       </li>
       <li v-for="page in pages" :key="page.name">
         <Button class="qam-page-button" @click="onClickPage(page.name)" :class="{ active: isPageActive(page.name) }" name="qam-page-button" :disabled="page.isDisabled">{{ page.name }}</Button>
       </li>
       <li>
-        <Button class="qam-next" @click="onClickNextPage" :disabled="isInLastPage">Next</Button>
+        <Button class="qam-prev-next" @click="onClickNextPage" :disabled="isInLastPage">Next</Button>
       </li>
       <li>
-        <Button class="qam-prev-next" @click="onClickLastPage" :disabled="isInLastPage">🢖🢖</Button>
+        <Button class="qam-first-last" @click="onClickLastPage" :disabled="isInLastPage">🢖🢖</Button>
       </li>
     </ul>
     <SimpleDropdown class="qam-tp-dropdown"></SimpleDropdown>
@@ -46,28 +46,32 @@ onMounted(() => {
 
 const startPage = computed(() => {
   // When on the first page
-  if (props.currentPage === 1) {
+  // if (props.currentPage === 1) {
+  //   return 1;
+  // }
+  if (props.currentPage <= props.radius) {
     return 1;
+  }
+
+  // When on the last page
+  if (props.currentPage === props.totalPages) {
+    const start = props.totalPages - (maxVisibleButtons.value - 1);
+
+    if (start === 0) {
+      return 1;
+    } else {
+      return start;
+    }
   }
 
   // // When on the last page
   // if (props.currentPage === props.totalPages) {
-  //   const start = props.totalPages - (maxVisibleButtons.value - 1);
-
-  //   if (start === 0) {
-  //     return 1;
-  //   } else {
-  //     return start;
-  //   }
+  //   return props.totalPages - maxVisibleButtons.value;
   // }
 
-  // When on the last page
-  if (props.currentPage === props.totalPages) {
-    return props.totalPages - maxVisibleButtons.value;
-  }
-
   // When in-between
-  return props.currentPage - 1;
+  console.log("Current page: ", props.currentPage);
+  return props.currentPage - props.radius;
 });
 
 const pages = computed(() => {
@@ -84,11 +88,15 @@ const pages = computed(() => {
 });
 
 const isInFirstPage = computed(() => {
-  return props.currentPage === 1;
+  console.log("In first page");
+  return props.currentPage <= props.radius;
+  // return props.currentPage === 1;
 });
 
 const isInLastPage = computed(() => {
-  return props.currentPage === props.totalPages;
+  console.log("In last page");
+  return props.currentPage > props.totalPages - props.radius;
+  // return props.currentPage === props.totalPages;
 });
 
 const emits = defineEmits(["pagechanged"]);
@@ -139,9 +147,17 @@ ul {
   /* width: 100%; */
 }
 
-.qam-page-button {
+Button {
+  margin: 0.3rem 0;
 }
 
+.qam-page-button {
+  width: 2.5rem;
+}
+
+.qam-prev-next {
+  width: 4rem;
+}
 .qam-not-current {
   color: #000;
 }
