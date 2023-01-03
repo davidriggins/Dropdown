@@ -6,8 +6,14 @@
 <template>
   <table id="qam-tableComponent" class="qam-table">
     <thead>
-      <ThElement v-for="(field, index) in storeTable.fields" :key="field" :field="field" :index="index"></ThElement>
-      <!-- <th v-for="field in fields" :key="field" @click="sortTable(field)">{{ field }}</th> -->
+      <tr>
+        <ThElement v-for="(field, index) in storeTable.fields" :key="field" :field="field" :index="index"></ThElement>
+        <!-- <th v-for="field in fields" :key="field" @click="sortTable(field)">{{ field }}</th> -->
+        <!-- <ThFilter v-for="(filter, index) in storeTable.filters" :key="index" :filter="filter" :index="index"></ThFilter> -->
+      </tr>
+      <tr>
+        <ThFilter v-for="(filter, index) in storeTable.filters" :key="index" :filter="filter" :index="index" :items="storeTable.data"></ThFilter>
+      </tr>
     </thead>
     <tbody>
       <tr v-for="(item, index) in storeTable.data" :key="item" class="qam-tr" :class="generateClassName(index)">
@@ -16,7 +22,7 @@
       </tr>
     </tbody>
   </table>
-  <TablePagination></TablePagination>
+  <!-- <TablePagination></TablePagination> -->
 </template>
 
 <!--======================================================================
@@ -34,6 +40,7 @@ import { useStoreTable } from "@/stores/storeTable";
 import ThElement from "@/components/ThElement.vue";
 import TdElement from "@/components/TdElement.vue";
 import TablePagination from "@//components/TablePagination.vue";
+import ThFilter from "@/components/ThFilter.vue";
 
 //========================================================================
 // Properties
@@ -114,10 +121,15 @@ thead {
 
 thead th {
   text-align: center;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 15px;
   padding: 0.1rem 0.2rem;
   border-left: 2px solid #ccc;
   border-bottom: 2px solid #ccc;
+}
+
+thead th button {
+  font-size: 10px;
 }
 
 tbody tr:nth-child(even) {

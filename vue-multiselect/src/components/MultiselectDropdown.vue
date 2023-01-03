@@ -98,7 +98,7 @@ onClickOutside(qam_dropdownRef, (/*event*/) => {
 
 // Create "filtered" list of items from search input
 const filteredList = () => {
-  if (props.items.filter((option) => option.toLowerCase().includes(input.value.toLowerCase())).length > props.maxItemsShown) {
+  if (props.items.filter((option) => option.toString().toLowerCase().includes(input.value.toString().toLowerCase())).length > props.maxItemsShown) {
     return [];
   }
 

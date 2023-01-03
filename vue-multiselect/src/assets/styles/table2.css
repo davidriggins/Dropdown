@@ -13,7 +13,15 @@
 }
 
 .qam-table .qam-thead .qam-th {
+  position: relative;
   font-weight: 1500;
+  font-size: 30px;
+}
+
+.qam-table .qam-thead .qam-th button {
+  position: relative;
+  font-weight: 1500;
+  font-size: 12px;
 }
 
 .qam-td {

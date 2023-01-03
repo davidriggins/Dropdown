@@ -2,10 +2,10 @@
   <!-- <div class="text-center mt-5 mb-5">
     <h1 class="mt-5 fw-bolder text-success">Component Tests</h1> -->
   <div class="mt-5">
-    <!-- <Table2></Table2> -->
+    <Table2></Table2>
     <!-- <SimpleDropdown @handleSelection="handleSelection" :items="list" :keepSelectedAsText="true"></SimpleDropdown> -->
     <!-- <MultiselectDropdown buttonText="Select Me" :items="optionsList"></MultiselectDropdown> -->
-    <TablePagination :totalPages="240" :perPage="25" :currentPage="currentPage" @pagechanged="onPageChange"></TablePagination>
+    <!-- <TablePagination :totalPages="240" :perPage="25" :currentPage="currentPage" @pagechanged="onPageChange"></TablePagination> -->
   </div>
   <!-- </div> -->
 </template>

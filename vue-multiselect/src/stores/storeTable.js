@@ -5,6 +5,7 @@ export const useStoreTable = defineStore("storeTable", {
   state: () => {
     return {
       fields: ["Checkbox", "Session ID", "Publish Time", "ArcGIS", "Build", "Product", "OS Version"],
+      filters: ["nf", "so", "so", "dd", "dd", "dd", "dd"],
 
       data: [
         { Checkbox: "Checkbox", "Session ID": "23", "Publish Time": "12/31/21 05:31 PM", ArcGIS: "11.1", Build: "41238", Product: "Server", "OS Version": "Win10(1809)" },
