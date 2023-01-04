@@ -5,7 +5,10 @@
 //========================================================================-->
 <template>
   <div class="qam-outer-div" ref="qam_dropdownRef">
-    <Button class="qam-dropdown-button" @click="dropdownButtonClicked">{{ buttonText + "  ⮟" }}</Button>
+    <Button class="qam-dropdown-button" @click="dropdownButtonClicked"
+      ><span class="qam-span-left">{{ buttonText }}</span
+      ><span class="qam-span-right">&nbsp;&nbsp;⮟</span></Button
+    >
     <div class="qam-dropdown-content" id="qam-dropdown-div" v-if="show">
       <input v-if="props.useSearch" type="text" placeholder="Search" v-model="input" class="qam-search-text qam-list-item" v-autofocus />
       <Button @click="clearAll" class="qam-clear-button">Clear All</Button>
@@ -98,6 +101,7 @@ onClickOutside(qam_dropdownRef, (/*event*/) => {
 
 // Create "filtered" list of items from search input
 const filteredList = () => {
+  console.log(props.items);
   if (props.items.filter((option) => option.toString().toLowerCase().includes(input.value.toString().toLowerCase())).length > props.maxItemsShown) {
     return [];
   }

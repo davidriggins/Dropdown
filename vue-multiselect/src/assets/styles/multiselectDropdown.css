@@ -15,13 +15,21 @@
 .qam-dropdown-button {
   display: block;
   position: relative;
-  margin: 0.2rem;
+  margin: 0rem;
   border: 1px solid #ccc;
   border-radius: 0.3rem;
   /* font-size: 10px; */
   z-index: 1;
 }
 
+.qam-span-left {
+  float: left;
+}
+
+.qam-span-right {
+  float: right;
+  text-align: right;
+}
 .qam-dropdown-content {
   position: relative;
   max-width: 455px; /* Allows for 50 characters */

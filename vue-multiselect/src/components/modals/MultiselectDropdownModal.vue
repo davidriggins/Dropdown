@@ -2,7 +2,7 @@
   <transition name="modal-fade">
     <div class="modal" role="dialog" aria-labelledby="modalTitle" ref="dropdownModalRef" aria-describedby="modalDescription">
       <section class="modal-body" id="modalDescription">
-        <Dropdown> </Dropdown>
+        <MultiselectDropdown :items="items" :buttonText="buttonText" :maxItemsShown="maxItemsShown" :useSearch="useSearch"> </MultiselectDropdown>
       </section>
     </div>
   </transition>
@@ -13,6 +13,22 @@ import { ref } from "vue";
 import { onClickOutside } from "@vueuse/core";
 
 import Dropdown from "@/components/Dropdown.vue";
+import MultiselectDropdown from "@/components/MultiselectDropdown.vue";
+
+// =======================================================================
+// Properties
+// =======================================================================
+const props = defineProps({
+  // Array of Strings to be displayed in the dropdown list
+  items: { type: Array },
+  // Text to be displayed on the dropdown button
+  buttonText: { type: String, default: "Select Me" },
+  // The maximum number of items to be visible in the dropdown.
+  // The dropdown is scrollable
+  maxItemsShown: { type: Number, default: 25 },
+  // Boolean used to show or not show the Search input
+  useSearch: { type: Boolean, default: true },
+});
 
 const dropdownModalRef = ref(null);
 
@@ -35,17 +51,18 @@ onClickOutside(dropdownModalRef, (event) => {
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 0.3rem;
 }
 
 .modal {
   background: #fff;
-  box-shadow: 2px 2px 20px 1px;
+  /* box-shadow: 2px 2px 20px 1px; */
   overflow-x: auto;
   display: flex;
   flex-direction: column;
   width: auto;
   height: auto;
-  border-radius: 3px;
+  border-radius: 0.3rem;
 }
 .modal-body {
   position: relative;

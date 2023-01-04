@@ -2,8 +2,8 @@
   <div>
     <!-- <Table2></Table2> -->
     <!-- <Table></Table> -->
-    <MultiselectDropdown class="qam-multiselect" :items="optionsList"></MultiselectDropdown>
-    <!-- <Dropdown></Dropdown> -->
+    <!-- <MultiselectDropdown class="qam-multiselect" :items="optionsList"></MultiselectDropdown> -->
+    <MultiselectDropdownModal :items="optionsList"></MultiselectDropdownModal>
     <!-- <button @click="openModal">Show Modal</button> -->
     <!-- <DropdownModal v-if="showModal" @closeModal="closeModal"></DropdownModal> -->
   </div>
@@ -15,17 +15,17 @@ import Dropdown from "../components/Dropdown.vue";
 import Table from "@/components/Table.vue";
 import Table2 from "@/components/Table2.vue";
 import MultiselectDropdown from "@/components/MultiselectDropdown.vue";
-// import DropdownModal from "../components/modals/DropdownModal.vue";
+import MultiselectDropdownModal from "@/components/modals/MultiselectDropdownModal.vue";
 
-// const showModal = ref(false);
+const showModal = ref(false);
 
-// const openModal = () => {
-//   showModal.value = true;
-// };
+const openModal = () => {
+  showModal.value = true;
+};
 
-// const closeModal = () => {
-//   showModal.value = false;
-// };
+const closeModal = () => {
+  showModal.value = false;
+};
 
 //const filteredOptions = ref(["Hello1", "Hello2", "Hello3"]);
 
