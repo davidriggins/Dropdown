@@ -5,7 +5,7 @@
 //========================================================================-->
 <template>
   <th v-if="isDropdown()">
-    <MultiselectDropdown :items="items"></MultiselectDropdown>
+    <MultiselectDropdown :buttonText="buttonText" :items="items"></MultiselectDropdown>
   </th>
   <th v-else></th>
 </template>
@@ -19,6 +19,7 @@
 //========================================================================
 // Imports
 //========================================================================
+import { ref } from "vue";
 import MultiselectDropdown from "@/Components/MultiselectDropdown.vue";
 
 //========================================================================
@@ -29,7 +30,9 @@ const props = defineProps({
   filter: { type: String },
   // Table header index (column)
   index: { type: Number },
+  // Data to filter
   items: { type: Array, default: () => [] },
+  field: { type: String },
 });
 
 //========================================================================
@@ -39,6 +42,7 @@ const props = defineProps({
 //========================================================================
 // Reactive Variables
 //========================================================================
+const buttonText = ref("Filter");
 
 //========================================================================
 // Emits
@@ -74,5 +78,10 @@ const isDropdown = () => {
   padding: 0;
   position: relative;
   font-weight: normal;
+}
+
+th {
+  z-index: 3;
+  /* overflow-y: auto; */
 }
 </style>

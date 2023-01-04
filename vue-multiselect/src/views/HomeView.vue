@@ -2,7 +2,8 @@
   <div>
     <!-- <Table2></Table2> -->
     <!-- <Table></Table> -->
-    <Dropdown></Dropdown>
+    <MultiselectDropdown class="qam-multiselect" :items="optionsList"></MultiselectDropdown>
+    <!-- <Dropdown></Dropdown> -->
     <!-- <button @click="openModal">Show Modal</button> -->
     <!-- <DropdownModal v-if="showModal" @closeModal="closeModal"></DropdownModal> -->
   </div>
@@ -13,6 +14,7 @@ import { ref } from "vue";
 import Dropdown from "../components/Dropdown.vue";
 import Table from "@/components/Table.vue";
 import Table2 from "@/components/Table2.vue";
+import MultiselectDropdown from "@/components/MultiselectDropdown.vue";
 // import DropdownModal from "../components/modals/DropdownModal.vue";
 
 // const showModal = ref(false);
@@ -56,9 +58,13 @@ const optionsList = ref([
 </script>
 
 <style scoped>
-@import "@/assets/styles/project.css";
+/* @import "@/assets/styles/project.css"; */
 
 .list-item {
   list-style-type: none;
+}
+
+.qam-multiselect {
+  font-size: 10px;
 }
 </style>

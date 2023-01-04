@@ -102,7 +102,7 @@ const filteredList = () => {
     return [];
   }
 
-  return props.items.filter((option) => option.toLowerCase().includes(input.value.toLowerCase()));
+  return props.items.filter((option) => option.toString().toLowerCase().includes(input.value.toString().toLowerCase()));
 };
 
 // Clear all button click.

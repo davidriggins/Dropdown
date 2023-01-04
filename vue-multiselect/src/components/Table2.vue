@@ -12,7 +12,7 @@
         <!-- <ThFilter v-for="(filter, index) in storeTable.filters" :key="index" :filter="filter" :index="index"></ThFilter> -->
       </tr>
       <tr>
-        <ThFilter v-for="(filter, index) in storeTable.filters" :key="index" :filter="filter" :index="index" :items="storeTable.data"></ThFilter>
+        <ThFilter v-for="(filter, index) in storeTable.filters" :key="index" :filter="filter" :index="index" :items="filterData(index)" class="qam-filter"></ThFilter>
       </tr>
     </thead>
     <tbody>
@@ -34,7 +34,7 @@
 //========================================================================
 // Imports
 //========================================================================
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { sortBy } from "lodash";
 import { useStoreTable } from "@/stores/storeTable";
 import ThElement from "@/components/ThElement.vue";
@@ -96,6 +96,12 @@ const sortTable = (col) => {
 
 const generateClassName = (index) => {
   return "qam-tr-" + index;
+};
+
+const filterData = (index) => {
+  const getData = storeTable.data.map((x) => x[storeTable.fields[index]]);
+
+  return getData;
 };
 </script>
 

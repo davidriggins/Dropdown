@@ -18,6 +18,7 @@
   margin: 0.2rem;
   border: 1px solid #ccc;
   border-radius: 0.3rem;
+  /* font-size: 10px; */
   z-index: 1;
 }
 
@@ -48,13 +49,13 @@
 
 .qam-clear-button {
   margin: 0.2rem;
-  font-size: 12px;
+  /* font-size: 8px; */
   float: left;
 }
 
 .qam-close-button {
   margin: 0.2rem;
-  font-size: 12px;
+  /* font-size: 12px; */
   float: right;
 }
 

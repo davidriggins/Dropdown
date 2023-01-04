@@ -72,6 +72,7 @@ button {
   border-radius: 0.3rem;
   background-color: #eee;
 
+  /* font-size: 10px; */
   /* box-shadow: 2px 2px 10px 1px; */
   /* transition: background-color 0.5s; */
 }
