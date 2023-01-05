@@ -1,23 +1,39 @@
+<!--======================================================================
+//========================================================================
+// Template
+//========================================================================
+//========================================================================-->
 <template>
-  <transition name="modal-fade">
+  <Button class="qam-dropdown-button" @click="dropdownButtonClicked"
+    ><span class="qam-span-left">{{ buttonText }}</span
+    ><span class="qam-span-right">&nbsp;&nbsp;⮟</span></Button
+  >
+  <transition name="modal-fade" v-if="showModal">
     <div class="modal" role="dialog" aria-labelledby="modalTitle" ref="dropdownModalRef" aria-describedby="modalDescription">
       <section class="modal-body" id="modalDescription">
-        <MultiselectDropdown :items="items" :buttonText="buttonText" :maxItemsShown="maxItemsShown" :useSearch="useSearch"> </MultiselectDropdown>
+        <MultiselectDropdownContent :items="items" :buttonText="buttonText" :maxItemsShown="maxItemsShown" :useSearch="useSearch" :closeClicked="closeClicked"> </MultiselectDropdownContent>
       </section>
     </div>
   </transition>
 </template>
 
+<!--======================================================================
+//========================================================================
+// Script
+//========================================================================
+//========================================================================-->
 <script setup>
+//========================================================================
+// Imports
+//========================================================================
 import { ref } from "vue";
 import { onClickOutside } from "@vueuse/core";
+import Button from "@/components/Button.vue";
+import MultiselectDropdownContent from "@/components/MultiselectDropdownContent.vue";
 
-import Dropdown from "@/components/Dropdown.vue";
-import MultiselectDropdown from "@/components/MultiselectDropdown.vue";
-
-// =======================================================================
+//========================================================================
 // Properties
-// =======================================================================
+//========================================================================
 const props = defineProps({
   // Array of Strings to be displayed in the dropdown list
   items: { type: Array },
@@ -30,17 +46,55 @@ const props = defineProps({
   useSearch: { type: Boolean, default: true },
 });
 
-const dropdownModalRef = ref(null);
+//========================================================================
+// Store
+//========================================================================
 
-const emits = defineEmits("closeModal");
+//========================================================================
+// Reactive Variables
+//========================================================================
+const dropdownModalRef = ref(null);
+const showModal = ref(false);
+
+//========================================================================
+// Emits
+//========================================================================
+// const emits = defineEmits("closeModal");
+
+//========================================================================
+// Computed
+//========================================================================
+
+//========================================================================
+// Lifecycle Hooks
+//========================================================================
+
+//========================================================================
+// Methods
+//========================================================================
+const dropdownButtonClicked = () => {
+  showModal.value = !showModal.value;
+};
+
+const closeClicked = () => {
+  console.log("Modal close was clicked");
+  showModal.value = false;
+};
 
 onClickOutside(dropdownModalRef, (event) => {
-  emits("closeModal");
+  showModal.value = false;
+  // emits("closeModal");
   console.log(event);
 });
 </script>
 
+<!--======================================================================
+//========================================================================
+// Styles
+//========================================================================
+//========================================================================-->
 <style scoped>
+@import "@/assets/styles/multiselectDropdown.css";
 .modal-backdrop {
   position: fixed;
   top: 0;

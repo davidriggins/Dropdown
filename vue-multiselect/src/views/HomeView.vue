@@ -3,7 +3,7 @@
     <!-- <Table2></Table2> -->
     <!-- <Table></Table> -->
     <!-- <MultiselectDropdown class="qam-multiselect" :items="optionsList"></MultiselectDropdown> -->
-    <MultiselectDropdownModal :items="optionsList"></MultiselectDropdownModal>
+    <MultiselectDropdown :items="optionsList"></MultiselectDropdown>
     <!-- <button @click="openModal">Show Modal</button> -->
     <!-- <DropdownModal v-if="showModal" @closeModal="closeModal"></DropdownModal> -->
   </div>
@@ -19,13 +19,13 @@ import MultiselectDropdownModal from "@/components/modals/MultiselectDropdownMod
 
 const showModal = ref(false);
 
-const openModal = () => {
-  showModal.value = true;
-};
+// const openModal = () => {
+//   showModal.value = true;
+// };
 
-const closeModal = () => {
-  showModal.value = false;
-};
+// const closeModal = () => {
+//   showModal.value = false;
+// };
 
 //const filteredOptions = ref(["Hello1", "Hello2", "Hello3"]);
 

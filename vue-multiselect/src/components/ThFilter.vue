@@ -5,9 +5,9 @@
 //========================================================================-->
 <template>
   <th v-if="isDropdown()">
-    <MultiselectDropdown :buttonText="buttonText" :items="items"></MultiselectDropdown>
+    <MultiselectDropdownModal :buttonText="buttonText" :items="items"></MultiselectDropdownModal>
   </th>
-  <th v-else></th>
+  <th v-else>HI</th>
 </template>
 
 <!--======================================================================
@@ -19,8 +19,8 @@
 //========================================================================
 // Imports
 //========================================================================
-import { ref } from "vue";
-import MultiselectDropdown from "@/Components/MultiselectDropdown.vue";
+import { ref, onMounted } from "vue";
+import MultiselectDropdownModal from "@/Components/modals/MultiselectDropdownModal.vue";
 
 //========================================================================
 // Properties
@@ -55,7 +55,10 @@ const buttonText = ref("Filter");
 //========================================================================
 // Lifecycle Hooks
 //========================================================================
-
+onMounted(() => {
+  // console.log(props.items);
+  console.log("ThFilter props.filter: ", props.filter);
+});
 //========================================================================
 // Methods
 //========================================================================

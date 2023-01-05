@@ -6,6 +6,7 @@
 
 .qam-outer-div {
   width: max-content;
+  position: relative;
 }
 
 .qam-nowrap {

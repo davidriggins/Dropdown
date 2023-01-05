@@ -4,28 +4,21 @@
 //========================================================================
 //========================================================================-->
 <template>
-  <div class="qam-outer-div" ref="qam_dropdownRef">
-    <Button class="qam-dropdown-button" @click="dropdownButtonClicked"
-      ><span class="qam-span-left">{{ buttonText }}</span
-      ><span class="qam-span-right">&nbsp;&nbsp;⮟</span></Button
-    >
-    <div class="qam-dropdown-content" id="qam-dropdown-div" v-if="show">
-      <input v-if="props.useSearch" type="text" placeholder="Search" v-model="input" class="qam-search-text qam-list-item" v-autofocus />
-      <Button @click="clearAll" class="qam-clear-button">Clear All</Button>
-      <Button @click="closeButton" class="qam-close-button">Close</Button>
-
-      <br />
-      <label class="qam-select-all qam-list-item"> <input type="checkbox" class="qam-select-all-cb" name="qam-select-all" @click="toggleSelectAll" /> {{ selectAllText }} </label>
-
-      <br />
-      <div class="qam-dropdown-list">
-        <span class="qam-nowrap"
-          ><label v-for="(option, index) in filteredList()" :key="index" class="qam-list-item">
-            <input type="checkbox" name="qam-checkbox-item" class="qam-list-item-cb" @click="toggleCheckbox" />{{ option }}
-          </label>
-        </span>
-      </div>
-    </div>
+  <Button class="qam-dropdown-button" @click="dropdownButtonClicked"
+    ><span class="qam-span-left">{{ buttonText }}</span
+    ><span class="qam-span-right">&nbsp;&nbsp;⮟</span></Button
+  >
+  <div>
+    <MultiselectDropdownContent
+      v-if="showContent"
+      :items="items"
+      :buttonText="buttonText"
+      :maxItemsShown="maxItemsShown"
+      :useSearch="useSearch"
+      class="qam-ms-dropdown"
+      ref="dropdownModalRef"
+      @closeclicked="closeclicked"
+    ></MultiselectDropdownContent>
   </div>
 </template>
 
@@ -35,17 +28,17 @@
 //========================================================================
 //========================================================================-->
 <script setup>
-// =======================================================================
+//========================================================================
 // Imports
-// =======================================================================
-import { onMounted, ref } from "vue";
+//========================================================================
+import { ref } from "vue";
 import { onClickOutside } from "@vueuse/core";
-import { vAutofocus } from "@/directives/vAutofocus";
 import Button from "@/components/Button.vue";
+import MultiselectDropdownContent from "@/components/MultiselectDropdownContent.vue";
 
-// =======================================================================
+//========================================================================
 // Properties
-// =======================================================================
+//========================================================================
 const props = defineProps({
   // Array of Strings to be displayed in the dropdown list
   items: { type: Array },
@@ -65,131 +58,39 @@ const props = defineProps({
 //========================================================================
 // Reactive Variables
 //========================================================================
-const show = ref(false);
-const input = ref("");
-const selectAllText = ref("Select All");
-const checkboxesChecked = ref([]);
+const showContent = ref(false);
+const dropdownModalRef = ref(null);
 
 //========================================================================
 // Emits
 //========================================================================
 
-// =======================================================================
-// Lifecycle hooks
-// =======================================================================
-onMounted(() => {});
+//========================================================================
+// Computed
+//========================================================================
 
-// ==================================================================
+//========================================================================
+// Lifecycle Hooks
+//========================================================================
+
+//========================================================================
 // Methods
-// ==================================================================
-
+//========================================================================
 // Dropdown button clicked
 const dropdownButtonClicked = () => {
-  show.value = !show.value;
+  showContent.value = !showContent.value;
 };
 
-// Click outside of dropdown area
-const qam_dropdownRef = ref(null);
-onClickOutside(qam_dropdownRef, (/*event*/) => {
-  const el = document.getElementById("qam-dropdown-div");
+const closeclicked = () => {
+  console.log("Outer close clicked");
+  showContent.value = false;
+};
 
-  if (el) {
-    clear();
-  }
-  show.value = false;
+onClickOutside(dropdownModalRef, (event) => {
+  showContent.value = false;
+  // emits("closeModal");
+  console.log(event);
 });
-
-// Create "filtered" list of items from search input
-const filteredList = () => {
-  console.log(props.items);
-  if (props.items.filter((option) => option.toString().toLowerCase().includes(input.value.toString().toLowerCase())).length > props.maxItemsShown) {
-    return [];
-  }
-
-  return props.items.filter((option) => option.toString().toLowerCase().includes(input.value.toString().toLowerCase()));
-};
-
-// Clear all button click.
-const clearAll = () => {
-  clear();
-};
-
-// Clear contents
-const clear = () => {
-  var checkboxes = document.getElementsByName("qam-checkbox-item");
-  var selectAll = document.getElementsByName("qam-select-all");
-
-  for (var i = 0; i < checkboxes.length; i++) {
-    if (checkboxes[i].checked) {
-      checkboxes[i].checked = false;
-    }
-  }
-
-  checkboxesChecked.value.length = 0;
-
-  if (selectAll[0].checked) {
-    selectAll[0].checked = false;
-  }
-
-  input.value = "";
-  selectAllText.value = "Select All";
-};
-
-// Close button clicked
-const closeButton = () => {
-  console.log("Close button checked");
-  console.log(checkboxesChecked.value);
-  clear();
-  show.value = false;
-};
-
-// Select/Deselect All button clicked
-const toggleSelectAll = (e) => {
-  checkboxesChecked.value.length = 0;
-  var checkboxes = document.getElementsByName("qam-checkbox-item");
-
-  for (var i = 0; i < checkboxes.length; i++) {
-    if (checkboxes[i] != e.target) {
-      checkboxes[i].checked = e.target.checked;
-      if (checkboxes[i].checked) {
-        var label = checkboxes[i].parentElement.textContent.trim();
-        checkboxesChecked.value.push(label);
-      }
-    }
-  }
-
-  if (e.target.checked) {
-    selectAllText.value = "Deselect All";
-  } else {
-    selectAllText.value = "Select All";
-  }
-};
-
-// A Checkbox was toggled
-const toggleCheckbox = () => {
-  var checkboxes = document.getElementsByName("qam-checkbox-item");
-  var selectAll = document.getElementsByName("qam-select-all");
-  checkboxesChecked.value.length = 0;
-  let count = 0;
-
-  for (var i = 0; i < checkboxes.length; i++) {
-    if (checkboxes[i].checked) {
-      var label = checkboxes[i].parentElement.textContent.trim();
-      checkboxesChecked.value.push(label);
-      count++;
-    }
-  }
-
-  if (count === checkboxes.length) {
-    selectAll[0].checked = true;
-    selectAllText.value = "Deselect All";
-  }
-
-  if (count < checkboxes.length) {
-    selectAll[0].checked = false;
-    selectAllText.value = "Select All";
-  }
-};
 </script>
 
 <!--======================================================================
@@ -198,5 +99,21 @@ const toggleCheckbox = () => {
 //========================================================================
 //========================================================================-->
 <style scoped>
-@import "@/assets/styles/multiselectDropdown.css";
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  font-weight: normal;
+}
+
+.qam-dropdown-button {
+  position: absolute;
+}
+
+.qam-ms-dropdown {
+  position: relative;
+}
 </style>
