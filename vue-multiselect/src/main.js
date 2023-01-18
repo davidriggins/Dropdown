@@ -9,7 +9,8 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap";
 
-import "./assets/styles/project.css";
+import "@/assets/styles/project.css";
+import "@/assets/styles/qam-common.css";
 
 const app = createApp(App);
 

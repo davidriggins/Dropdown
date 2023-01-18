@@ -2,10 +2,6 @@
   <RouterView />
 </template>
 
-<style>
-@import "@/assets/styles/qam-common.css";
-</style>
-
 <style scoped>
 /* @import "@/assets/styles/qam-common.css"; */
 

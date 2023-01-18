@@ -63,10 +63,6 @@ onBeforeMount(() => {});
 //========================================================================
 //========================================================================-->
 <style scoped>
-@import "../assets/styles/qam-common.css";
-:root {
-  --qam-color-border: #ccc;
-}
 button {
   display: flex;
   justify-content: space-between;
@@ -77,10 +73,6 @@ button {
   border: 2px solid var(--qam-color-border);
   border-radius: 0.3rem;
   background-color: var(--qam-color-element);
-
-  /* font-size: 10px; */
-  /* box-shadow: 2px 2px 10px 1px; */
-  /* transition: background-color 0.5s; */
 }
 
 button:visited {
@@ -96,17 +88,7 @@ button:focus {
 }
 
 button:active {
-  border: 2px double #0000ff;
-  color: #00f;
+  border: 2px double var(--qam-color-element-highlight);
+  color: var(--qam-color-element-highlight);
 }
-
-/* .button-click-enter-active,
-.button-click-leave-active {
-  transition: opacity 5s ease-in-out;
-}
-
-.button-click-enter-from,
-.button-click-leave-to {
-  opacity: 0;
-} */
 </style>
