@@ -1,6 +1,6 @@
 <!--======================================================================
 //========================================================================
-// Template: SimpleDropdown
+// Template: QamSimpleDropdown
 //========================================================================
 //========================================================================-->
 <template>
@@ -109,18 +109,24 @@ onClickOutside(dropdownRef, (/*event*/) => {
   font-weight: normal;
 }
 
-.qam-simple-dropdown-button {
-  min-width: 4rem;
-}
-
 .qam-simple-dropdown {
   margin: 0;
   position: relative;
-  display: inline-block;
+  display: grid;
+  grid-template-areas:
+    "button"
+    "dd-content";
+}
+
+.qam-simple-dropdown-button {
+  min-width: 4rem;
+  grid-area: button;
 }
 
 .qam-simple-dropdown-content {
-  display: block;
+  /* display: block; */
+  display: flex;
+  flex-direction: column;
   position: absolute;
   margin: 0;
   padding: 0;
@@ -134,17 +140,19 @@ onClickOutside(dropdownRef, (/*event*/) => {
   overflow: hidden; /* Hides the overflow content */
   overflow-y: auto; /* Sets y scroll bars */
   z-index: 1;
+
+  grid-area: dd-content;
 }
 
 .qam-simple-dropdown-item {
-  background-color: #fff;
+  background-color: var(--qam-color-background);
   list-style-type: none;
   margin: 0;
   padding: 0 0.3rem;
   width: 100%;
   display: block;
   z-index: 2;
-  border: 2px solid #fff;
+  border: 2px solid var(--qam-color-background);
 }
 
 .qam-simple-dropdown-item:hover {
@@ -152,7 +160,7 @@ onClickOutside(dropdownRef, (/*event*/) => {
 }
 
 .qam-simple-dropdown-item:active {
-  border: 2px solid #00f;
+  border: 2px solid var(-qam-color-element-highlight);
 }
 
 /* .qam-simple-dropdown {

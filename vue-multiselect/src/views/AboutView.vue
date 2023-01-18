@@ -3,7 +3,7 @@
     <h1 class="mt-5 fw-bolder text-success">Component Tests</h1> -->
   <div>
     <!-- <Table2></Table2> -->
-    <SimpleDropdown @handleSelection="handleSelection" :items="list" :keepSelectedAsText="true"></SimpleDropdown>
+    <QamSimpleDropdown @handleSelection="handleSelection" :items="list" :keepSelectedAsText="true"></QamSimpleDropdown>
     <!-- <MultiselectDropdown buttonText="Select Me" :items="optionsList"></MultiselectDropdown> -->
     <!-- <TablePagination :totalPages="240" :perPage="25" :currentPage="currentPage" @pagechanged="onPageChange"></TablePagination> -->
   </div>
@@ -13,7 +13,7 @@
 <script setup>
 import { ref } from "vue";
 // import Table2 from "@/components/Table2.vue";
-import SimpleDropdown from "@/components/SimpleDropdown.vue";
+import QamSimpleDropdown from "@/components/QamSimpleDropdown.vue";
 // import { useStoreTable } from "@/stores/storeTable";
 // import TablePagination from "../components/TablePagination.vue";
 // import MultiselectDropdown from "../components/MultiselectDropdown.vue";

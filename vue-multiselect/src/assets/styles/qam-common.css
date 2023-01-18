@@ -1,15 +1,18 @@
 :root {
   --qam-c-blue: #00f;
-
   --qam-c-light-gray: #eee;
   --qam-c-medium-gray: #ccc;
+  --qam-c-white: #fff;
 }
 
 :root {
+  /* Color related */
+  --qam-color-background: var(--c-white);
   --qam-color-border: var(--qam-c-medium-gray);
   --qam-color-element: var(--qam-c-light-gray);
   --qam-color-element-highlight: var(--qam-c-blue);
   --qam-color-element-hover: var(--qam-c-medium-gray);
 
+  /* Size related */
   --qam-border-radius: 7px;
 }
