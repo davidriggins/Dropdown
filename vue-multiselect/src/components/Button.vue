@@ -63,14 +63,20 @@ onBeforeMount(() => {});
 //========================================================================
 //========================================================================-->
 <style scoped>
+@import "../assets/styles/qam-common.css";
+:root {
+  --qam-color-border: #ccc;
+}
 button {
-  display: inline-block;
-  margin: 0 rem;
+  display: flex;
+  justify-content: space-between;
+
+  margin: 0rem;
   padding: 0.2rem 0.4rem;
 
-  border: 2px solid #ccc;
+  border: 2px solid var(--qam-color-border);
   border-radius: 0.3rem;
-  background-color: #eee;
+  background-color: var(--qam-color-element);
 
   /* font-size: 10px; */
   /* box-shadow: 2px 2px 10px 1px; */

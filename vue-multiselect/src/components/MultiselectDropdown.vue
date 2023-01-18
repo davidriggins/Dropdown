@@ -4,21 +4,23 @@
 //========================================================================
 //========================================================================-->
 <template>
-  <Button class="qam-dropdown-button" @click="dropdownButtonClicked"
-    ><span class="qam-span-left">{{ buttonText }}</span
-    ><span class="qam-span-right">&nbsp;&nbsp;⮟</span></Button
-  >
-  <div>
-    <MultiselectDropdownContent
-      v-if="showContent"
-      :items="items"
-      :buttonText="buttonText"
-      :maxItemsShown="maxItemsShown"
-      :useSearch="useSearch"
-      class="qam-ms-dropdown"
-      ref="dropdownModalRef"
-      @closeclicked="closeclicked"
-    ></MultiselectDropdownContent>
+  <div class="qam-ms-dropdown">
+    <Button class="qam-ms-dropdown__button" @click="dropdownButtonClicked"
+      ><span class="qam-span-left">{{ buttonText }}</span
+      ><span class="qam-span-right">&nbsp;&nbsp;⮟</span></Button
+    >
+    <div>
+      <MultiselectDropdownContent
+        v-show="showContent"
+        :items="items"
+        :buttonText="buttonText"
+        :maxItemsShown="maxItemsShown"
+        :useSearch="useSearch"
+        class="qam-ms-dropdown__content"
+        ref="dropdownModalRef"
+        @closeclicked="closeclicked"
+      ></MultiselectDropdownContent>
+    </div>
   </div>
 </template>
 
@@ -105,15 +107,20 @@ onClickOutside(dropdownModalRef, (event) => {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  position: relative;
+  /* position: relative; */
   font-weight: normal;
 }
 
-.qam-dropdown-button {
+.qam-ms-dropdown {
+  display: grid;
+}
+.qam-ms-dropdown__button {
   position: absolute;
+  grid-column: 1 / 2;
 }
 
-.qam-ms-dropdown {
-  position: relative;
+.qam-ms-dropdown__content {
+  /* position: relative; */
+  grid-column: 2 / 3;
 }
 </style>

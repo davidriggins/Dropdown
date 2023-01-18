@@ -1,0 +1,12 @@
+:root {
+  --qam-c-blue: #00f;
+
+  --qam-c-light-gray: #eee;
+  --qam-c-medium-gray: #ccc;
+}
+
+:root {
+  --qam-color-border: #ccc;
+  --qam-color-element: var(--qam-c-light-gray);
+  --qam-color-element-highlight: var(--qam-c-blue);
+}

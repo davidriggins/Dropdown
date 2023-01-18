@@ -2,7 +2,13 @@
   <RouterView />
 </template>
 
+<style>
+@import "@/assets/styles/qam-common.css";
+</style>
+
 <style scoped>
+/* @import "@/assets/styles/qam-common.css"; */
+
 header {
   line-height: 1.5;
   max-height: 100vh;
