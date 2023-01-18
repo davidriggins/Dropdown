@@ -5,10 +5,12 @@
 //========================================================================-->
 <template>
   <div class="qam-ms-dropdown">
-    <Button class="qam-ms-dropdown__button" @click="dropdownButtonClicked"
-      ><span class="qam-span-left">{{ buttonText }}</span
-      ><span class="qam-span-right">&nbsp;&nbsp;⮟</span></Button
-    >
+    <div>
+      <Button class="qam-ms-dropdown__button" @click="dropdownButtonClicked"
+        ><span class="qam-span-left">{{ buttonText }}</span
+        ><span class="qam-span-right">&nbsp;&nbsp;⮟</span></Button
+      >
+    </div>
     <div>
       <MultiselectDropdownContent
         v-show="showContent"
@@ -113,14 +115,17 @@ onClickOutside(dropdownModalRef, (event) => {
 
 .qam-ms-dropdown {
   display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
 }
 .qam-ms-dropdown__button {
   position: absolute;
-  grid-column: 1 / 2;
+  grid-row: 1 / 2;
 }
 
 .qam-ms-dropdown__content {
   /* position: relative; */
-  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  margin-top: 10rem;
 }
 </style>

@@ -71,7 +71,7 @@ button {
   padding: 0.2rem 0.4rem;
 
   border: 2px solid var(--qam-color-border);
-  border-radius: 0.3rem;
+  border-radius: var(--qam-border-radius);
   background-color: var(--qam-color-element);
 }
 

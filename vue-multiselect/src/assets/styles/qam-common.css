@@ -9,4 +9,6 @@
   --qam-color-border: #ccc;
   --qam-color-element: var(--qam-c-light-gray);
   --qam-color-element-highlight: var(--qam-c-blue);
+
+  --qam-border-radius: 7px;
 }
