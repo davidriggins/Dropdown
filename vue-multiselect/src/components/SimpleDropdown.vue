@@ -5,12 +5,12 @@
 //========================================================================-->
 <template>
   <div class="qam-simple-dropdown" ref="dropdownRef">
-    <Button @click="toggleDropdown" class="qam-simple-dropdown-button">
-      {{ buttonLabel + "  ⮟" }}
-    </Button>
+    <QamButton @click="toggleDropdown" class="qam-simple-dropdown-button">
+      {{ buttonTextLocal + "  ⮟" }}
+    </QamButton>
 
     <ul v-if="show" class="qam-simple-dropdown-content">
-      <li v-for="(item, index) in items" :key="index" @click="itemWasSelected(item)">{{ item }}</li>
+      <li v-for="(item, index) in items" :key="index" class="qam-simple-dropdown-item" @click="itemWasSelected(item)">{{ item }}</li>
     </ul>
   </div>
 </template>
@@ -26,7 +26,7 @@
 //========================================================================
 import { ref, onMounted } from "vue";
 import { onClickOutside } from "@vueuse/core";
-import Button from "@/components/Button.vue";
+import QamButton from "@/components/QamButton.vue";
 
 //========================================================================
 // Properties
@@ -50,7 +50,7 @@ const props = defineProps({
 // Reactive Variables
 //========================================================================
 const show = ref(false);
-const buttonLabel = ref("");
+const buttonTextLocal = ref("");
 const itemSelected = ref("");
 
 //========================================================================
@@ -62,27 +62,31 @@ const emits = defineEmits(["handleSelection"]);
 // Lifecycle Hooks
 //========================================================================
 onMounted(() => {
-  buttonLabel.value = props.buttonText;
+  buttonTextLocal.value = props.buttonText;
 });
 
 //========================================================================
 // Methods
 //========================================================================
+
+// Toggle the dropdown
 const toggleDropdown = () => {
   show.value = !show.value;
 };
 
+// Emit with the item selected.
+// Keep the selected item as dropdown button text if chosen to do so.
 const itemWasSelected = (item) => {
   show.value = false;
   itemSelected.value = item;
 
   if (props.keepSelectedAsText) {
-    buttonLabel.value = item;
+    buttonTextLocal.value = item;
   }
   emits("handleSelection", item);
 };
 
-// Click outside
+// Close dropdown if click outside.
 const dropdownRef = ref(null);
 onClickOutside(dropdownRef, (/*event*/) => {
   show.value = false;
@@ -105,27 +109,25 @@ onClickOutside(dropdownRef, (/*event*/) => {
   font-weight: normal;
 }
 
-Button {
-  cursor: pointer;
-  /* min-width: 50px; */
+.qam-simple-dropdown-button {
   min-width: 4rem;
 }
 
-div {
+.qam-simple-dropdown {
   margin: 0;
   position: relative;
   display: inline-block;
 }
 
-ul {
+.qam-simple-dropdown-content {
   display: block;
   position: absolute;
   margin: 0;
   padding: 0;
-  /* width: fit-content; */
-  width: 100%;
-  border: 1px solid #ccc;
-  border-radius: 0.3rem;
+
+  width: 100%; /* width: fit-content; */
+  border: 1px solid var(--qam-color-border);
+  border-radius: var(--qam-border-radius);
 
   /* Scrolling in dropdown */
   max-height: 30rem; /* Maximum height of viewable content */
@@ -134,7 +136,7 @@ ul {
   z-index: 1;
 }
 
-li {
+.qam-simple-dropdown-item {
   background-color: #fff;
   list-style-type: none;
   margin: 0;
@@ -145,11 +147,11 @@ li {
   border: 2px solid #fff;
 }
 
-li:hover {
-  background-color: #ccc;
+.qam-simple-dropdown-item:hover {
+  background-color: var(--qam-color-element-hover);
 }
 
-li:active {
+.qam-simple-dropdown-item:active {
   border: 2px solid #00f;
 }
 

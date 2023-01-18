@@ -11,11 +11,11 @@
 
 <script setup>
 import { ref } from "vue";
-import Dropdown from "../components/Dropdown.vue";
-import Table from "@/components/Table.vue";
-import Table2 from "@/components/Table2.vue";
-import MultiselectDropdown from "@/components/MultiselectDropdown.vue";
-import MultiselectDropdownModal from "@/components/modals/MultiselectDropdownModal.vue";
+// import Dropdown from "../components/Dropdown.vue";
+// import Table from "@/components/Table.vue";
+// import Table2 from "@/components/Table2.vue";
+// import MultiselectDropdown from "@/components/MultiselectDropdown.vue";
+// import MultiselectDropdownModal from "@/components/modals/MultiselectDropdownModal.vue";
 
 const showModal = ref(false);
 

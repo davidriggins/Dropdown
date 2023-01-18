@@ -5,7 +5,7 @@
 //========================================================================-->
 <template>
   <transition name="button-click">
-    <button class="btn-sm qam-button">
+    <button class="btn-sm qam-button qam-shrink-on-click">
       <slot />
     </button>
   </transition>
@@ -63,7 +63,7 @@ onBeforeMount(() => {});
 //========================================================================
 //========================================================================-->
 <style scoped>
-button {
+.qam-button {
   display: flex;
   justify-content: space-between;
 
@@ -75,19 +75,29 @@ button {
   background-color: var(--qam-color-element);
 }
 
-button:visited {
+.qam-shrink-on-click {
+  transform: perspective(1px) translateZ(0);
+  transition-duration: 0.2s;
+  transition-property: transform;
 }
 
-button:hover {
+.qam-shrink-on-click:active {
+  transform: scale(0.9);
+}
+
+.qam-button:visited {
+}
+
+.qam-button:hover {
   cursor: pointer;
   filter: brightness(90%);
 }
 
-button:focus {
+.qam-button:focus {
   cursor: pointer;
 }
 
-button:active {
+.qam-button:active {
   border: 2px double var(--qam-color-element-highlight);
   color: var(--qam-color-element-highlight);
 }

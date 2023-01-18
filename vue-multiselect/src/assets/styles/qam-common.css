@@ -6,9 +6,10 @@
 }
 
 :root {
-  --qam-color-border: #ccc;
+  --qam-color-border: var(--qam-c-medium-gray);
   --qam-color-element: var(--qam-c-light-gray);
   --qam-color-element-highlight: var(--qam-c-blue);
+  --qam-color-element-hover: var(--qam-c-medium-gray);
 
   --qam-border-radius: 7px;
 }
