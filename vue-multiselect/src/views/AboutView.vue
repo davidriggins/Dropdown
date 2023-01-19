@@ -3,8 +3,8 @@
     <h1 class="mt-5 fw-bolder text-success">Component Tests</h1> -->
   <div>
     <!-- <Table2></Table2> -->
-    <QamSimpleDropdown @handleSelection="handleSelection" :items="list" :keepSelectedAsText="true"></QamSimpleDropdown>
-    <!-- <MultiselectDropdown buttonText="Select Me" :items="optionsList"></MultiselectDropdown> -->
+    <!-- <QamSimpleDropdown @handleSelection="handleSelection" :items="list" :keepSelectedAsText="true"></QamSimpleDropdown> -->
+    <QamMultiselectDropdown buttonText="Select Me" :items="optionsList"></QamMultiselectDropdown>
     <!-- <TablePagination :totalPages="240" :perPage="25" :currentPage="currentPage" @pagechanged="onPageChange"></TablePagination> -->
   </div>
   <!-- </div> -->
@@ -16,7 +16,7 @@ import { ref } from "vue";
 import QamSimpleDropdown from "@/components/QamSimpleDropdown.vue";
 // import { useStoreTable } from "@/stores/storeTable";
 // import TablePagination from "../components/TablePagination.vue";
-// import MultiselectDropdown from "../components/MultiselectDropdown.vue";
+import QamMultiselectDropdown from "../components/QamMultiselectDropdown.vue";
 
 const list = ref(["5", "10", "25", "100", "200"]);
 

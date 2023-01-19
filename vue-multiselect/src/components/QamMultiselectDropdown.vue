@@ -5,20 +5,18 @@
 //========================================================================-->
 <template>
   <div class="qam-ms-dropdown">
-    <div>
-      <Button class="qam-ms-dropdown__button" @click="dropdownButtonClicked"
-        ><span class="qam-span-left">{{ buttonText }}</span
-        ><span class="qam-span-right">&nbsp;&nbsp;⮟</span></Button
-      >
+    <div class="qam-ms-dropdown-button-div">
+      <QamButton class="qam-ms-dropdown-button" @click="dropdownButtonClicked">
+        {{ buttonText + "  ⮟" }}
+      </QamButton>
     </div>
-    <div>
+    <div class="qam-ms-dropdown-content">
       <MultiselectDropdownContent
         v-show="showContent"
         :items="items"
         :buttonText="buttonText"
         :maxItemsShown="maxItemsShown"
         :useSearch="useSearch"
-        class="qam-ms-dropdown__content"
         ref="dropdownModalRef"
         @closeclicked="closeclicked"
       ></MultiselectDropdownContent>
@@ -37,7 +35,7 @@
 //========================================================================
 import { ref } from "vue";
 import { onClickOutside } from "@vueuse/core";
-import Button from "@/components/Button.vue";
+import QamButton from "@/components/QamButton.vue";
 import MultiselectDropdownContent from "@/components/MultiselectDropdownContent.vue";
 
 //========================================================================
@@ -109,23 +107,26 @@ onClickOutside(dropdownModalRef, (event) => {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  /* position: relative; */
   font-weight: normal;
 }
 
 .qam-ms-dropdown {
+  margin: 0;
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
-}
-.qam-ms-dropdown__button {
-  position: absolute;
-  grid-row: 1 / 2;
+  grid-template-areas:
+    "button"
+    "dd-content";
 }
 
-.qam-ms-dropdown__content {
-  /* position: relative; */
-  grid-row: 2 / 3;
-  margin-top: 10rem;
+.qam-ms-dropdown-button-div {
+  grid-area: button;
+}
+
+.qam-ms-dropdown-button {
+  min-width: 4rem;
+}
+
+.qam-ms-dropdown-content {
+  grid-area: dd-content;
 }
 </style>

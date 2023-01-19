@@ -5,14 +5,10 @@
 //========================================================================-->
 <template>
   <div class="qam-outer-div" ref="qam_dropdownRef">
-    <!-- <Button class="qam-dropdown-button" @click="dropdownButtonClicked"
-      ><span class="qam-span-left">{{ buttonText }}</span
-      ><span class="qam-span-right">&nbsp;&nbsp;⮟</span></Button
-    > -->
     <div class="qam-dropdown-content" id="qam-dropdown-div">
       <input v-if="props.useSearch" type="text" placeholder="Search" v-model="input" class="qam-search-text qam-list-item" v-autofocus />
-      <Button @click="clearAll" class="qam-clear-button">Clear All</Button>
-      <Button @click="closeButton" class="qam-close-button">Close</Button>
+      <QamButton @click="clearAll" class="qam-clear-button">Clear All</QamButton>
+      <QamButton @click="closeButton" class="qam-close-button">Close</QamButton>
 
       <br />
       <label class="qam-select-all qam-list-item"> <input type="checkbox" class="qam-select-all-cb" name="qam-select-all" @click="toggleSelectAll" /> {{ selectAllText }} </label>
@@ -41,7 +37,7 @@
 import { onMounted, ref } from "vue";
 // import { onClickOutside } from "@vueuse/core";
 import { vAutofocus } from "@/directives/vAutofocus";
-import Button from "@/components/Button.vue";
+import QamButton from "@/components/QamButton.vue";
 
 // =======================================================================
 // Properties

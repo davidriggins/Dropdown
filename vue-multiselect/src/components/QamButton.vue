@@ -6,7 +6,9 @@
 <template>
   <transition name="button-click">
     <button class="btn-sm qam-button qam-shrink-on-click">
-      <slot />
+      <span class="qam-nowrap">
+        <slot />
+      </span>
     </button>
   </transition>
 </template>
@@ -100,5 +102,9 @@ onBeforeMount(() => {});
 .qam-button:active {
   border: 2px double var(--qam-color-element-highlight);
   color: var(--qam-color-element-highlight);
+}
+
+.qam-nowrap {
+  white-space: nowrap;
 }
 </style>
