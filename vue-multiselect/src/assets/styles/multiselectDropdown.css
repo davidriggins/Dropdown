@@ -9,78 +9,57 @@
   position: relative;
 }
 
-.qam-nowrap {
-  white-space: nowrap;
-}
-
-.qam-dropdown-button {
-  display: block;
-  position: relative;
-  margin: 0rem;
-  border: 1px solid #ccc;
-  border-radius: 0.3rem;
-  /* font-size: 10px; */
-  z-index: 1;
-}
-
-.qam-span-left {
-  float: left;
-}
-
-.qam-span-right {
-  float: right;
-  text-align: right;
-}
 .qam-dropdown-content {
-  position: relative;
   max-width: 455px; /* Allows for 50 characters */
-  /* margin: 0.2rem; */
   padding: 0.2rem;
-  border-radius: 0.3rem;
-  display: inline-block;
+  border-radius: var(--qam-border-radius);
   width: max-content;
-  border: 1px solid #ccc;
-  background-color: #fbfbfb;
+  border: 1px solid var(--qam-color-border);
+  background-color: var(--qam-color-form);
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "search search"
+    "clear close"
+    "select-all select-all"
+    "dd-content dd-content";
 }
 
 .qam-search-text {
-  position: relative;
-  display: block;
   margin: 0.3rem 0;
-  border: 1px solid #ccc;
-  border-radius: 0.3rem;
+  border: 1px solid var(--qam-color-border);
+  border-radius: var(--qam-border-radius);
   min-width: 50px;
+  grid-area: search;
 }
 
 .qam-search-text:focus {
-  background-color: #fff;
+  background-color: var(--qam-color-background);
 }
 
 .qam-clear-button {
   margin: 0.2rem;
-  /* font-size: 8px; */
-  float: left;
+  grid-area: clear;
+  justify-self: start;
 }
 
 .qam-close-button {
   margin: 0.2rem;
-  /* font-size: 12px; */
-  float: right;
+  grid-area: close;
+  justify-self: end;
 }
 
 .qam-select-all {
-  position: relative;
-  display: block;
   margin: 0.3rem 0;
   padding: 0 5rem;
-  border: 1px solid #ccc;
-  border-radius: 0.3rem;
-  float: left;
+  border: 1px solid var(--qam-color-border);
+  border-radius: var(--qam-border-radius);
   z-index: 1;
+  grid-area: select-all;
 }
 
 .qam-select-all-cb {
-  /* margin-right: 0.1rem; */
 }
 
 .qam-dropdown-list {
@@ -96,10 +75,9 @@
   overflow: hidden; /* Hides the overflow content */
   overflow-y: auto; /* Sets y scroll bars */
 
-  border: 1px solid #ccc;
-  border-radius: 0.3rem;
-  /* width: max-content; */ /* Sets the width to the size of content */
-  /* background-color: hsla(0, 0%, 100%, 0); */
+  border: 1px solid var(--qam-color-border);
+  border-radius: var(--qam-border-radius);
+  grid-area: dd-content;
 }
 
 .qam-list-item {
@@ -107,13 +85,13 @@
   display: block;
   padding: 0 0.3rem;
   width: 100%;
-  background-color: white;
+  background-color: var(--qam-color-background);
 }
 
 .qam-list-item:hover,
 .qam-list-item:focus {
   cursor: pointer;
-  background-color: #f0f0f0;
+  background-color: var(--qam-color-element-hover);
 }
 
 .qam-list-item-cb {

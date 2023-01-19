@@ -1,10 +1,10 @@
 <!--======================================================================
 //========================================================================
-// Template: MultiselectDropdownContent
+// Template: QamMultiselectDropdownContent
 //========================================================================
 //========================================================================-->
 <template>
-  <div class="qam-outer-div" ref="qam_dropdownRef">
+  <div class="qam-dropdown-content-div" ref="qam_dropdownRef">
     <div class="qam-dropdown-content" id="qam-dropdown-div">
       <input v-if="props.useSearch" type="text" placeholder="Search" v-model="input" class="qam-search-text qam-list-item" v-autofocus />
       <QamButton @click="clearAll" class="qam-clear-button">Clear All</QamButton>

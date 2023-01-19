@@ -103,8 +103,4 @@ onBeforeMount(() => {});
   border: 2px double var(--qam-color-element-highlight);
   color: var(--qam-color-element-highlight);
 }
-
-.qam-nowrap {
-  white-space: nowrap;
-}
 </style>

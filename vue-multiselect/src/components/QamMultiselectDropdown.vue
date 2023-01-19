@@ -1,6 +1,6 @@
 <!--======================================================================
 //========================================================================
-// Template: MultiselectDropdown
+// Template: QamMultiselectDropdown
 //========================================================================
 //========================================================================-->
 <template>
@@ -11,7 +11,7 @@
       </QamButton>
     </div>
     <div class="qam-ms-dropdown-content">
-      <MultiselectDropdownContent
+      <QamMultiselectDropdownContent
         v-show="showContent"
         :items="items"
         :buttonText="buttonText"
@@ -19,7 +19,7 @@
         :useSearch="useSearch"
         ref="dropdownModalRef"
         @closeclicked="closeClicked"
-      ></MultiselectDropdownContent>
+      ></QamMultiselectDropdownContent>
     </div>
   </div>
 </template>
@@ -36,7 +36,7 @@
 import { ref } from "vue";
 import { onClickOutside } from "@vueuse/core";
 import QamButton from "@/components/QamButton.vue";
-import MultiselectDropdownContent from "@/components/MultiselectDropdownContent.vue";
+import QamMultiselectDropdownContent from "@/components/QamMultiselectDropdownContent.vue";
 
 //========================================================================
 // Properties

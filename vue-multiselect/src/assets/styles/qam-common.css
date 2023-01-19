@@ -2,6 +2,7 @@
   --qam-c-blue: #00f;
   --qam-c-light-gray: #eee;
   --qam-c-medium-gray: #ccc;
+  --qam-c-very-light-gray: #fbfbfb;
   --qam-c-white: #fff;
 }
 
@@ -12,7 +13,12 @@
   --qam-color-element: var(--qam-c-light-gray);
   --qam-color-element-highlight: var(--qam-c-blue);
   --qam-color-element-hover: var(--qam-c-medium-gray);
+  --qam-color-form: var(--qam-c-very-light-gray);
 
   /* Size related */
   --qam-border-radius: 7px;
+}
+
+.qam-nowrap {
+  white-space: nowrap;
 }
