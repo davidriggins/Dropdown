@@ -18,7 +18,7 @@
     <tbody>
       <tr v-for="(item, index) in storeTable.data" :key="item" class="qam-tr" :class="generateClassName(index)">
         <!-- <td v-for="field in fields" :key="field">{{ item[field] }}</td> -->
-        <TdElement v-for="(field, index) in storeTable.fields" :key="field" :index="index" :cell="item[field]"></TdElement>
+        <QamTdElement v-for="(field, index) in storeTable.fields" :key="field" :index="index" :cell="item[field]"></QamTdElement>
       </tr>
     </tbody>
   </table>
@@ -38,7 +38,7 @@ import { ref, onMounted, computed } from "vue";
 import { sortBy } from "lodash";
 import { useStoreTable } from "@/stores/storeTable";
 import QamThElement from "@/components/QamThElement.vue";
-import TdElement from "@/components/TdElement.vue";
+import QamTdElement from "@/components/QamTdElement.vue";
 // import TablePagination from "@//components/TablePagination.vue";
 // import ThFilter from "@/components/ThFilter.vue";
 

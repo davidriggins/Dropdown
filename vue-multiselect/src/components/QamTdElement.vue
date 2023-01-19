@@ -1,6 +1,6 @@
 <!--======================================================================
 //========================================================================
-// Template: TdElement
+// Template: QamTdElement
 //========================================================================
 //========================================================================-->
 <template>
@@ -55,6 +55,8 @@ onMounted(() => {});
 //========================================================================
 // Methods
 //========================================================================
+
+// Determine if the field is a checkbox field from field property.
 const isCheckboxField = () => {
   if (props.cell == "Checkbox") {
     return true;
@@ -62,6 +64,7 @@ const isCheckboxField = () => {
   return false;
 };
 
+// Generate the th class name by adding column index.
 const generateClassName = () => {
   return "qam-td-" + props.index;
 };
