@@ -7,12 +7,12 @@
   <table id="qam-tableComponent" class="qam-table">
     <thead>
       <tr>
-        <ThElement v-for="(field, index) in storeTable.fields" :key="field" :field="field" :index="index"></ThElement>
+        <QamThElement v-for="(field, index) in storeTable.fields" :key="field" :field="field" :index="index"></QamThElement>
         <!-- <th v-for="field in fields" :key="field" @click="sortTable(field)">{{ field }}</th> -->
         <!-- <ThFilter v-for="(filter, index) in storeTable.filters" :key="index" :filter="filter" :index="index"></ThFilter> -->
       </tr>
       <tr>
-        <ThFilter v-for="(filter, index) in storeTable.filters" :key="index" :filter="filter" :index="index" :items="filterData(index)" class="qam-filter"></ThFilter>
+        <!-- <ThFilter v-for="(filter, index) in storeTable.filters" :key="index" :filter="filter" :index="index" :items="filterData(index)" class="qam-filter"></ThFilter> -->
       </tr>
     </thead>
     <tbody>
@@ -37,10 +37,10 @@
 import { ref, onMounted, computed } from "vue";
 import { sortBy } from "lodash";
 import { useStoreTable } from "@/stores/storeTable";
-import ThElement from "@/components/ThElement.vue";
+import QamThElement from "@/components/QamThElement.vue";
 import TdElement from "@/components/TdElement.vue";
-import TablePagination from "@//components/TablePagination.vue";
-import ThFilter from "@/components/ThFilter.vue";
+// import TablePagination from "@//components/TablePagination.vue";
+// import ThFilter from "@/components/ThFilter.vue";
 
 //========================================================================
 // Properties

@@ -1,9 +1,9 @@
 <template>
   <div>
-    <!-- <Table2></Table2> -->
+    <Table2></Table2>
     <!-- <Table></Table> -->
     <!-- <MultiselectDropdown class="qam-multiselect" :items="optionsList"></MultiselectDropdown> -->
-    <MultiselectDropdown :items="optionsList"></MultiselectDropdown>
+    <!-- <MultiselectDropdown :items="optionsList"></MultiselectDropdown> -->
     <!-- <button @click="openModal">Show Modal</button> -->
     <!-- <DropdownModal v-if="showModal" @closeModal="closeModal"></DropdownModal> -->
   </div>
@@ -13,7 +13,7 @@
 import { ref } from "vue";
 // import Dropdown from "../components/Dropdown.vue";
 // import Table from "@/components/Table.vue";
-// import Table2 from "@/components/Table2.vue";
+import Table2 from "@/components/Table2.vue";
 // import MultiselectDropdown from "@/components/MultiselectDropdown.vue";
 // import MultiselectDropdownModal from "@/components/modals/MultiselectDropdownModal.vue";
 

@@ -2,9 +2,9 @@
   <!-- <div class="text-center mt-5 mb-5">
     <h1 class="mt-5 fw-bolder text-success">Component Tests</h1> -->
   <div>
-    <!-- <Table2></Table2> -->
+    <Table2></Table2>
     <!-- <QamSimpleDropdown @handleSelection="handleSelection" :items="list" :keepSelectedAsText="true"></QamSimpleDropdown> -->
-    <QamMultiselectDropdown buttonText="Select Me" :items="optionsList"></QamMultiselectDropdown>
+    <!-- <QamMultiselectDropdown buttonText="Select Me" :items="optionsList"></QamMultiselectDropdown> -->
     <!-- <TablePagination :totalPages="240" :perPage="25" :currentPage="currentPage" @pagechanged="onPageChange"></TablePagination> -->
   </div>
   <!-- </div> -->

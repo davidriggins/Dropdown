@@ -1,6 +1,6 @@
 <!--======================================================================
 //========================================================================
-// Template: ThElement
+// Template: QamThElement
 //========================================================================
 //========================================================================-->
 <template>
@@ -57,6 +57,8 @@ onMounted(() => {
 //========================================================================
 // Methods
 //========================================================================
+
+// Determine if the field is a checkbox field from field property.
 const isCheckboxField = () => {
   if (props.field == "Checkbox") {
     return true;
@@ -64,6 +66,7 @@ const isCheckboxField = () => {
   return false;
 };
 
+// Generate the th class name by adding column index.
 const generateClassName = () => {
   return "qam-th-" + props.index;
 };
