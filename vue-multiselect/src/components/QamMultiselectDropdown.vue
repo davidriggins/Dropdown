@@ -18,7 +18,7 @@
         :maxItemsShown="maxItemsShown"
         :useSearch="useSearch"
         ref="dropdownModalRef"
-        @closeclicked="closeclicked"
+        @closeclicked="closeClicked"
       ></MultiselectDropdownContent>
     </div>
   </div>
@@ -78,20 +78,20 @@ const dropdownModalRef = ref(null);
 //========================================================================
 // Methods
 //========================================================================
+
 // Dropdown button clicked
 const dropdownButtonClicked = () => {
   showContent.value = !showContent.value;
 };
 
-const closeclicked = () => {
-  console.log("Outer close clicked");
+// Close button clicked
+const closeClicked = () => {
   showContent.value = false;
 };
 
+// Clicked outside dropdown: close.
 onClickOutside(dropdownModalRef, (event) => {
-  showContent.value = false;
-  // emits("closeModal");
-  console.log(event);
+  closeClicked();
 });
 </script>
 
