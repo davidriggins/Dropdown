@@ -1,20 +1,18 @@
 <!--======================================================================
 //========================================================================
-// Template
+// Template: QamMultiselectDropdownModal
 //========================================================================
 //========================================================================-->
 <template>
-  <Button class="qam-dropdown-button" @click="dropdownButtonClicked"
+  <QamButton class="qam-dropdown-button" @click="dropdownButtonClicked"
     ><span class="qam-span-left">{{ buttonText }}</span
-    ><span class="qam-span-right">&nbsp;&nbsp;⮟</span></Button
+    ><span class="qam-span-right">&nbsp;&nbsp;⮟</span></QamButton
   >
-  <transition name="modal-fade" v-if="showModal">
-    <div class="modal" role="dialog" aria-labelledby="modalTitle" ref="dropdownModalRef" aria-describedby="modalDescription">
-      <section class="modal-body" id="modalDescription">
-        <MultiselectDropdownContent :items="items" :buttonText="buttonText" :maxItemsShown="maxItemsShown" :useSearch="useSearch" :closeClicked="closeClicked"> </MultiselectDropdownContent>
-      </section>
-    </div>
-  </transition>
+  <div class="modal" role="dialog" aria-labelledby="modalTitle" ref="dropdownModalRef" aria-describedby="modalDescription">
+    <section class="modal-body" id="modalDescription">
+      <QamMultiselectDropdownContent :items="items" :buttonText="buttonText" :maxItemsShown="maxItemsShown" :useSearch="useSearch" :closeClicked="closeClicked"> </QamMultiselectDropdownContent>
+    </section>
+  </div>
 </template>
 
 <!--======================================================================
@@ -28,8 +26,8 @@
 //========================================================================
 import { ref } from "vue";
 import { onClickOutside } from "@vueuse/core";
-import Button from "@/components/Button.vue";
-import MultiselectDropdownContent from "@/components/MultiselectDropdownContent.vue";
+import QamButton from "@/components/QamButton.vue";
+import QamMultiselectDropdownContent from "@/components/QamMultiselectDropdownContent.vue";
 
 //========================================================================
 // Properties
@@ -122,14 +120,4 @@ onClickOutside(dropdownModalRef, (event) => {
   position: relative;
   padding: 0;
 }
-
-/* .modal-fade-enter,
-.modal-fade-leave-active {
-  opacity: 0;
-}
-
-.modal-fade-enter-active,
-.modal-fade-leave-active {
-  transition: opacity 0.5s ease;
-} */
 </style>

@@ -1,11 +1,11 @@
 <!--======================================================================
 //========================================================================
-// Template: ThFilter
+// Template: QamThFilter
 //========================================================================
 //========================================================================-->
 <template>
   <th v-if="isDropdown()">
-    <MultiselectDropdownModal :buttonText="buttonText" :items="items"></MultiselectDropdownModal>
+    <QamMultiselectDropdownModal :buttonText="buttonText" :items="items"></QamMultiselectDropdownModal>
   </th>
   <th v-else>HI</th>
 </template>
@@ -20,7 +20,7 @@
 // Imports
 //========================================================================
 import { ref, onMounted } from "vue";
-import MultiselectDropdownModal from "@/Components/modals/MultiselectDropdownModal.vue";
+import QamMultiselectDropdownModal from "@/Components/modals/QamMultiselectDropdownModal.vue";
 
 //========================================================================
 // Properties
