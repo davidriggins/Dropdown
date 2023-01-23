@@ -4,7 +4,7 @@
 //========================================================================
 //========================================================================-->
 <template>
-  <QamButton class="qam-dropdown-button" @click="dropdownButtonClicked"
+  <QamButton class="qam-dropdown-button" @click="dropdownButtonClicked($event)"
     ><span class="qam-span-left">{{ buttonText }}</span
     ><span class="qam-span-right">&nbsp;&nbsp;⮟</span></QamButton
   >
@@ -70,8 +70,60 @@ const showModal = ref(false);
 //========================================================================
 // Methods
 //========================================================================
-const dropdownButtonClicked = () => {
+const dropdownButtonClicked = (e) => {
   showModal.value = !showModal.value;
+  var element = e.target.parentElement;
+  var type = element.tagName;
+  console.log(type);
+
+  for (var i = 0; i < 4; i++) {
+    if (type != "TH") {
+      element = element.parentElement;
+      type = element.tagName;
+    } else {
+      break;
+    }
+  }
+  var rect = element.getBoundingClientRect();
+
+  var modal = document.querySelector(".modal");
+  modal.style.left = rect.x + "px";
+  modal.style.top = rect.y + rect.height + "px";
+  console.log("parent: ", element);
+  console.log("rect: ", rect);
+
+  var classList = element.classList;
+  console.log(classList);
+
+  for (var j = 0; j < classList.length; j++) {
+    console.log(classList[j]);
+    if (classList[j] != null) {
+      if (classList[j].includes("tf-")) {
+        var value = classList[j].split("-");
+        console.log("End value: ", value[2]);
+      }
+    }
+  }
+
+  var regex = /qam-tf-(\d*)/g;
+  // var regex = new RegExp("qam-tf-(\\d*)/g")[1];
+  console.log("Length: ", classList.length);
+  for (var k = 0; k < classList.length; k++) {
+    console.log("classList item: ", classList[k]);
+    if (classList[k] != null) {
+      if (classList[k].includes("tf-")) {
+        var matches = regex.exec(classList[k]);
+        if (matches) {
+          var columnNum = matches[1];
+          // var columnNum = classList[k].match(regex[1]);
+          // var columnNum = classList[k].match(regex[1]);
+          // console.log("columnNum size: ", columnNum.length);
+          console.log("Regex num: ", columnNum);
+        }
+      }
+    }
+  }
+  // var th = document.querySelector("");
 };
 
 const closeClicked = () => {
@@ -115,6 +167,7 @@ onClickOutside(dropdownModalRef, (event) => {
   width: auto;
   height: auto;
   border-radius: 0.3rem;
+  top: 40px;
 }
 .modal-body {
   position: relative;

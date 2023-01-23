@@ -12,7 +12,7 @@
         <!-- <ThFilter v-for="(filter, index) in storeTable.filters" :key="index" :filter="filter" :index="index"></ThFilter> -->
       </tr>
       <tr>
-        <!-- <ThFilter v-for="(filter, index) in storeTable.filters" :key="index" :filter="filter" :index="index" :items="filterData(index)" class="qam-filter"></ThFilter> -->
+        <QamThFilter v-for="(filter, index) in storeTable.filters" :key="index" :filter="filter" :index="index" :items="filterData(index)" class="qam-filter"></QamThFilter>
       </tr>
     </thead>
     <tbody>
@@ -40,7 +40,7 @@ import { useStoreTable } from "@/stores/storeTable";
 import QamThElement from "@/components/QamThElement.vue";
 import QamTdElement from "@/components/QamTdElement.vue";
 // import TablePagination from "@//components/TablePagination.vue";
-// import ThFilter from "@/components/ThFilter.vue";
+import QamThFilter from "@/components/QamThFilter.vue";
 
 //========================================================================
 // Properties

@@ -4,10 +4,10 @@
 //========================================================================
 //========================================================================-->
 <template>
-  <th v-if="isDropdown()">
+  <th :class="generateClassName()" v-if="isDropdown()">
     <QamMultiselectDropdownModal :buttonText="buttonText" :items="items"></QamMultiselectDropdownModal>
   </th>
-  <th v-else>HI</th>
+  <th :class="generateClassName()" v-else>HI</th>
 </template>
 
 <!--======================================================================
@@ -20,7 +20,7 @@
 // Imports
 //========================================================================
 import { ref, onMounted } from "vue";
-import QamMultiselectDropdownModal from "@/Components/modals/QamMultiselectDropdownModal.vue";
+import QamMultiselectDropdownModal from "@/components/modals/QamMultiselectDropdownModal.vue";
 
 //========================================================================
 // Properties
@@ -65,6 +65,11 @@ onMounted(() => {
 const isDropdown = () => {
   return props.filter === "dd";
 };
+
+// Generate the th class name by adding column index.
+const generateClassName = () => {
+  return "qam-tf-" + props.index;
+};
 </script>
 
 <!--======================================================================
@@ -84,7 +89,7 @@ const isDropdown = () => {
 }
 
 th {
-  z-index: 3;
+  /* z-index: 3; */
   /* overflow-y: auto; */
 }
 </style>
