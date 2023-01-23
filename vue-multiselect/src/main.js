@@ -1,4 +1,4 @@
-import { createApp, Vue } from "vue";
+import { createApp } from "vue";
 import { createPinia } from "pinia";
 import { sortBy } from "lodash";
 
@@ -12,7 +12,8 @@ import "bootstrap";
 import "@/assets/styles/project.css";
 import "@/assets/styles/qam-common.css";
 
-Object.assign(window, { Vue });
+let app = createApp(App);
+Object.assign(window, { Vue: { component: app.component } });
 webix.require(["https://desktopqa/libs/webix-forms/scripts/webix-vue.js"], _main_);
 
 async function _main_() {
